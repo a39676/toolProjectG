@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="job_test.orange.mapper.LoanRecordMapper">
+  
+  <resultMap id="BaseResultMap" type="job_test.orange.domain.LoanRecord">
+    <result column="loan_id" jdbcType="VARCHAR" property="loanId" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="identity_no" jdbcType="VARCHAR" property="identityNo" />
+    <result column="loan_amount" jdbcType="BIGINT" property="loanAmount" />
+    <result column="loan_rate" jdbcType="REAL" property="loanRate" />
+    <result column="fee_amount" jdbcType="BIGINT" property="feeAmount" />
+    <result column="interest_rate" jdbcType="REAL" property="interestRate" />
+    <result column="interest_amount" jdbcType="BIGINT" property="interestAmount" />
+    <result column="riskc_service_rate" jdbcType="REAL" property="riskcServiceRate" />
+    <result column="riskc_service_amount" jdbcType="BIGINT" property="riskcServiceAmount" />
+    <result column="risk_reserve_rate" jdbcType="REAL" property="riskReserveRate" />
+    <result column="risk_reserve_amount" jdbcType="BIGINT" property="riskReserveAmount" />
+    <result column="afterloan_service_rate" jdbcType="REAL" property="afterloanServiceRate" />
+    <result column="afterloan_service_amount" jdbcType="BIGINT" property="afterloanServiceAmount" />
+    <result column="platform_service_rate" jdbcType="REAL" property="platformServiceRate" />
+    <result column="platform_service_amount" jdbcType="BIGINT" property="platformServiceAmount" />
+    <result column="coupon_id" jdbcType="VARCHAR" property="couponId" />
+    <result column="coupon_amount" jdbcType="BIGINT" property="couponAmount" />
+    <result column="loan_day" jdbcType="INTEGER" property="loanDay" />
+    <result column="should_refund_time" jdbcType="BIGINT" property="shouldRefundTime" />
+    <result column="bank_amount" jdbcType="BIGINT" property="bankAmount" />
+    <result column="apply_time" jdbcType="BIGINT" property="applyTime" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_deposit_city" jdbcType="INTEGER" property="bankDepositCity" />
+    <result column="bank_reserved_phone" jdbcType="VARCHAR" property="bankReservedPhone" />
+    <result column="loan_status" jdbcType="TINYINT" property="loanStatus" />
+    <result column="review_status" jdbcType="TINYINT" property="reviewStatus" />
+    <result column="review_time" jdbcType="BIGINT" property="reviewTime" />
+    <result column="review_faild_type" jdbcType="TINYINT" property="reviewFaildType" />
+    <result column="review_faild_reason" jdbcType="VARCHAR" property="reviewFaildReason" />
+    <result column="review_admin_id" jdbcType="VARCHAR" property="reviewAdminId" />
+    <result column="bank_status" jdbcType="TINYINT" property="bankStatus" />
+    <result column="bank_time" jdbcType="BIGINT" property="bankTime" />
+    <result column="refund_status" jdbcType="TINYINT" property="refundStatus" />
+    <result column="refund_time" jdbcType="BIGINT" property="refundTime" />
+    <result column="refund_amount" jdbcType="BIGINT" property="refundAmount" />
+    <result column="refund_principal_amount" jdbcType="BIGINT" property="refundPrincipalAmount" />
+    <result column="refund_overdue_amount" jdbcType="BIGINT" property="refundOverdueAmount" />
+    <result column="refund_faild_reason" jdbcType="VARCHAR" property="refundFaildReason" />
+    <result column="overdue_day" jdbcType="INTEGER" property="overdueDay" />
+    <result column="overdue_amount" jdbcType="BIGINT" property="overdueAmount" />
+    <result column="safe_key" jdbcType="VARCHAR" property="safeKey" />
+    <result column="data_version" jdbcType="INTEGER" property="dataVersion" />
+    <result column="ext_data" jdbcType="VARCHAR" property="extData" />
+    <result column="register_channel" jdbcType="VARCHAR" property="registerChannel" />
+    <result column="client_type" jdbcType="TINYINT" property="clientType" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="platform" jdbcType="TINYINT" property="platform" />
+    <result column="app_version" jdbcType="VARCHAR" property="appVersion" />
+    <result column="login_phone" jdbcType="VARCHAR" property="loginPhone" />
+    <result column="loan_count" jdbcType="INTEGER" property="loanCount" />
+    <result column="loan_success_count" jdbcType="INTEGER" property="loanSuccessCount" />
+    <result column="riskc_version" jdbcType="VARCHAR" property="riskcVersion" />
+  </resultMap>
+  
+  <insert id="insert" parameterType="job_test.orange.domain.LoanRecord">
+    insert into loan_record (loan_id, uid, phone, 
+      real_name, identity_no, loan_amount, 
+      loan_rate, fee_amount, interest_rate, 
+      interest_amount, riskc_service_rate, riskc_service_amount, 
+      risk_reserve_rate, risk_reserve_amount, afterloan_service_rate, 
+      afterloan_service_amount, platform_service_rate, 
+      platform_service_amount, coupon_id, coupon_amount, 
+      loan_day, should_refund_time, bank_amount, 
+      apply_time, bank_card_no, bank_code, 
+      bank_name, bank_deposit_city, bank_reserved_phone, 
+      loan_status, review_status, review_time, 
+      review_faild_type, review_faild_reason, review_admin_id, 
+      bank_status, bank_time, refund_status, 
+      refund_time, refund_amount, refund_principal_amount, 
+      refund_overdue_amount, refund_faild_reason, 
+      overdue_day, overdue_amount, safe_key, 
+      data_version, ext_data, register_channel, 
+      client_type, ip, device_id, 
+      platform, app_version, login_phone, 
+      loan_count, loan_success_count, riskc_version
+      )
+    values (#{loanId,jdbcType=VARCHAR}, #{uid,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{identityNo,jdbcType=VARCHAR}, #{loanAmount,jdbcType=BIGINT}, 
+      #{loanRate,jdbcType=REAL}, #{feeAmount,jdbcType=BIGINT}, #{interestRate,jdbcType=REAL}, 
+      #{interestAmount,jdbcType=BIGINT}, #{riskcServiceRate,jdbcType=REAL}, #{riskcServiceAmount,jdbcType=BIGINT}, 
+      #{riskReserveRate,jdbcType=REAL}, #{riskReserveAmount,jdbcType=BIGINT}, #{afterloanServiceRate,jdbcType=REAL}, 
+      #{afterloanServiceAmount,jdbcType=BIGINT}, #{platformServiceRate,jdbcType=REAL}, 
+      #{platformServiceAmount,jdbcType=BIGINT}, #{couponId,jdbcType=VARCHAR}, #{couponAmount,jdbcType=BIGINT}, 
+      #{loanDay,jdbcType=INTEGER}, #{shouldRefundTime,jdbcType=BIGINT}, #{bankAmount,jdbcType=BIGINT}, 
+      #{applyTime,jdbcType=BIGINT}, #{bankCardNo,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankDepositCity,jdbcType=INTEGER}, #{bankReservedPhone,jdbcType=VARCHAR}, 
+      #{loanStatus,jdbcType=TINYINT}, #{reviewStatus,jdbcType=TINYINT}, #{reviewTime,jdbcType=BIGINT}, 
+      #{reviewFaildType,jdbcType=TINYINT}, #{reviewFaildReason,jdbcType=VARCHAR}, #{reviewAdminId,jdbcType=VARCHAR}, 
+      #{bankStatus,jdbcType=TINYINT}, #{bankTime,jdbcType=BIGINT}, #{refundStatus,jdbcType=TINYINT}, 
+      #{refundTime,jdbcType=BIGINT}, #{refundAmount,jdbcType=BIGINT}, #{refundPrincipalAmount,jdbcType=BIGINT}, 
+      #{refundOverdueAmount,jdbcType=BIGINT}, #{refundFaildReason,jdbcType=VARCHAR}, 
+      #{overdueDay,jdbcType=INTEGER}, #{overdueAmount,jdbcType=BIGINT}, #{safeKey,jdbcType=VARCHAR}, 
+      #{dataVersion,jdbcType=INTEGER}, #{extData,jdbcType=VARCHAR}, #{registerChannel,jdbcType=VARCHAR}, 
+      #{clientType,jdbcType=TINYINT}, #{ip,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=TINYINT}, #{appVersion,jdbcType=VARCHAR}, #{loginPhone,jdbcType=VARCHAR}, 
+      #{loanCount,jdbcType=INTEGER}, #{loanSuccessCount,jdbcType=INTEGER}, #{riskcVersion,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="job_test.orange.domain.LoanRecord">
+    insert into loan_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        loan_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="identityNo != null">
+        identity_no,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="loanRate != null">
+        loan_rate,
+      </if>
+      <if test="feeAmount != null">
+        fee_amount,
+      </if>
+      <if test="interestRate != null">
+        interest_rate,
+      </if>
+      <if test="interestAmount != null">
+        interest_amount,
+      </if>
+      <if test="riskcServiceRate != null">
+        riskc_service_rate,
+      </if>
+      <if test="riskcServiceAmount != null">
+        riskc_service_amount,
+      </if>
+      <if test="riskReserveRate != null">
+        risk_reserve_rate,
+      </if>
+      <if test="riskReserveAmount != null">
+        risk_reserve_amount,
+      </if>
+      <if test="afterloanServiceRate != null">
+        afterloan_service_rate,
+      </if>
+      <if test="afterloanServiceAmount != null">
+        afterloan_service_amount,
+      </if>
+      <if test="platformServiceRate != null">
+        platform_service_rate,
+      </if>
+      <if test="platformServiceAmount != null">
+        platform_service_amount,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="couponAmount != null">
+        coupon_amount,
+      </if>
+      <if test="loanDay != null">
+        loan_day,
+      </if>
+      <if test="shouldRefundTime != null">
+        should_refund_time,
+      </if>
+      <if test="bankAmount != null">
+        bank_amount,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankDepositCity != null">
+        bank_deposit_city,
+      </if>
+      <if test="bankReservedPhone != null">
+        bank_reserved_phone,
+      </if>
+      <if test="loanStatus != null">
+        loan_status,
+      </if>
+      <if test="reviewStatus != null">
+        review_status,
+      </if>
+      <if test="reviewTime != null">
+        review_time,
+      </if>
+      <if test="reviewFaildType != null">
+        review_faild_type,
+      </if>
+      <if test="reviewFaildReason != null">
+        review_faild_reason,
+      </if>
+      <if test="reviewAdminId != null">
+        review_admin_id,
+      </if>
+      <if test="bankStatus != null">
+        bank_status,
+      </if>
+      <if test="bankTime != null">
+        bank_time,
+      </if>
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="refundAmount != null">
+        refund_amount,
+      </if>
+      <if test="refundPrincipalAmount != null">
+        refund_principal_amount,
+      </if>
+      <if test="refundOverdueAmount != null">
+        refund_overdue_amount,
+      </if>
+      <if test="refundFaildReason != null">
+        refund_faild_reason,
+      </if>
+      <if test="overdueDay != null">
+        overdue_day,
+      </if>
+      <if test="overdueAmount != null">
+        overdue_amount,
+      </if>
+      <if test="safeKey != null">
+        safe_key,
+      </if>
+      <if test="dataVersion != null">
+        data_version,
+      </if>
+      <if test="extData != null">
+        ext_data,
+      </if>
+      <if test="registerChannel != null">
+        register_channel,
+      </if>
+      <if test="clientType != null">
+        client_type,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="appVersion != null">
+        app_version,
+      </if>
+      <if test="loginPhone != null">
+        login_phone,
+      </if>
+      <if test="loanCount != null">
+        loan_count,
+      </if>
+      <if test="loanSuccessCount != null">
+        loan_success_count,
+      </if>
+      <if test="riskcVersion != null">
+        riskc_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null">
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=BIGINT},
+      </if>
+      <if test="loanRate != null">
+        #{loanRate,jdbcType=REAL},
+      </if>
+      <if test="feeAmount != null">
+        #{feeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="interestRate != null">
+        #{interestRate,jdbcType=REAL},
+      </if>
+      <if test="interestAmount != null">
+        #{interestAmount,jdbcType=BIGINT},
+      </if>
+      <if test="riskcServiceRate != null">
+        #{riskcServiceRate,jdbcType=REAL},
+      </if>
+      <if test="riskcServiceAmount != null">
+        #{riskcServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="riskReserveRate != null">
+        #{riskReserveRate,jdbcType=REAL},
+      </if>
+      <if test="riskReserveAmount != null">
+        #{riskReserveAmount,jdbcType=BIGINT},
+      </if>
+      <if test="afterloanServiceRate != null">
+        #{afterloanServiceRate,jdbcType=REAL},
+      </if>
+      <if test="afterloanServiceAmount != null">
+        #{afterloanServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="platformServiceRate != null">
+        #{platformServiceRate,jdbcType=REAL},
+      </if>
+      <if test="platformServiceAmount != null">
+        #{platformServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponAmount != null">
+        #{couponAmount,jdbcType=BIGINT},
+      </if>
+      <if test="loanDay != null">
+        #{loanDay,jdbcType=INTEGER},
+      </if>
+      <if test="shouldRefundTime != null">
+        #{shouldRefundTime,jdbcType=BIGINT},
+      </if>
+      <if test="bankAmount != null">
+        #{bankAmount,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankDepositCity != null">
+        #{bankDepositCity,jdbcType=INTEGER},
+      </if>
+      <if test="bankReservedPhone != null">
+        #{bankReservedPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loanStatus != null">
+        #{loanStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reviewStatus != null">
+        #{reviewStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reviewTime != null">
+        #{reviewTime,jdbcType=BIGINT},
+      </if>
+      <if test="reviewFaildType != null">
+        #{reviewFaildType,jdbcType=TINYINT},
+      </if>
+      <if test="reviewFaildReason != null">
+        #{reviewFaildReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewAdminId != null">
+        #{reviewAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankStatus != null">
+        #{bankStatus,jdbcType=TINYINT},
+      </if>
+      <if test="bankTime != null">
+        #{bankTime,jdbcType=BIGINT},
+      </if>
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=BIGINT},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=BIGINT},
+      </if>
+      <if test="refundPrincipalAmount != null">
+        #{refundPrincipalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="refundOverdueAmount != null">
+        #{refundOverdueAmount,jdbcType=BIGINT},
+      </if>
+      <if test="refundFaildReason != null">
+        #{refundFaildReason,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueDay != null">
+        #{overdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="overdueAmount != null">
+        #{overdueAmount,jdbcType=BIGINT},
+      </if>
+      <if test="safeKey != null">
+        #{safeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVersion != null">
+        #{dataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="extData != null">
+        #{extData,jdbcType=VARCHAR},
+      </if>
+      <if test="registerChannel != null">
+        #{registerChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null">
+        #{clientType,jdbcType=TINYINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="appVersion != null">
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPhone != null">
+        #{loginPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCount != null">
+        #{loanCount,jdbcType=INTEGER},
+      </if>
+      <if test="loanSuccessCount != null">
+        #{loanSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="riskcVersion != null">
+        #{riskcVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+ 
+</mapper>
