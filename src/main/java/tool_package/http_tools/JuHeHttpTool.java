@@ -22,7 +22,8 @@ public class JuHeHttpTool {
 	
 	private String targetUrl = "http://apis.juhe.cn/mobile/get?phone=13800138000&dtype=json&key=6f93fcb77088aa0f1d888945f23b4a4c";
 	
-	private void post() {
+	@SuppressWarnings("deprecation")
+	public void post() {
 		
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead 
 

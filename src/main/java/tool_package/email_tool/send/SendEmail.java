@@ -1,7 +1,5 @@
 package tool_package.email_tool.send;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;

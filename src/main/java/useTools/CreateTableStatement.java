@@ -29,7 +29,7 @@ public class CreateTableStatement {
     	String outputPath = (tool01.separatorFilter(path));
     	String colNameFile = (inputPath  + "colName.txt");
     	String colTypeFile = (inputPath  + "colType.txt");
-    	String colKeyFile = (inputPath + "colKey.txt");
+//    	String colKeyFile = (inputPath + "colKey.txt");
     	String colCommentFile = (inputPath  + "colComment.txt");
     	String colDefaultValFile = (inputPath + "colDefaultVal.txt");
     	

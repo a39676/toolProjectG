@@ -65,7 +65,6 @@ public class CreateGifBatch {
 		
 		Set<String> regexSet = new HashSet<String>();
 		
-		String prefixRegex = null;
 		String suffixRegex = "^(.*)(-\\d{1,2}\\.png)$";
 		Pattern suffixPattern = Pattern.compile(suffixRegex);
 		

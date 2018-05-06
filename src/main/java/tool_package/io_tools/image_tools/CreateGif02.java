@@ -1,6 +1,6 @@
 package tool_package.io_tools.image_tools;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
