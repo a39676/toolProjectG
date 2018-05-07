@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import demo.tool.domain.ImageCache;
+import demo.tool.service.impl.ImageToolServiceImpl;
 import encodeHandle.EncodeUtil;
 import ioHandle.FileUtilCustom;
 import net.sf.json.JSONArray;
@@ -95,9 +96,12 @@ public class ImageCacheLocalHandle {
 		JSONObject jsonInput = JSONObject.fromObject(fileStr);
 		JSONArray imageCacheJsons = jsonInput.getJSONArray("imageCache");
 		
-		
+		ImageCache tmpIc;
 		for(int i = 0; i < imageCacheJsons.size(); i ++) {
-			caches.add(createImageCache(imageCacheJsons.getJSONObject(i)));
+			tmpIc = new ImageCache().createImageCacheFromJson(imageCacheJsons.getJSONObject(i));
+			tmpIc.setIsDownload(true);
+			tmpIc.setDownloadTime(new Date());
+			caches.add(tmpIc);
 		}
 		
 		for(ImageCache ic : caches) {
@@ -130,32 +134,12 @@ public class ImageCacheLocalHandle {
 		jsonOutput.put("imageCache", imageCacheJsons);
 		
 		try {
-			fu.byteToFile(jsonOutput.toString().getBytes("utf8"), tmpImageLocalPath + "imageCacheHandled.txt");
+			fu.byteToFile(jsonOutput.toString().getBytes("utf8"), tmpImageLocalPath + "imageCacheHandled" + System.currentTimeMillis() + ".txt");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ImageCache createImageCache(JSONObject json) {
-		ImageCache ic = new ImageCache();
-		if(json.containsKey("create_time")) {
-			ic.setCreateTime(new Date(json.getJSONObject("create_time").getLong("time")));
-		}
-		ic.setDownloadTime(new Date());
-		ic.setImageId(Integer.parseInt(json.getString("image_id")));
-		ic.setImageName(json.getString("image_name"));
-		if(json.containsKey("image_tag")) {
-			ic.setImageTag(Long.parseLong(json.getString("image_tag")));
-		}
-		ic.setImageUrl(json.getString("image_url"));
-		ic.setIsDownload(true);
-		if(json.containsKey("remark")) {
-			ic.setRemark(json.getString("remark"));
-		}
-		
-		return ic;
-	}
-
 	public List<String> getFieldsName(Object o) {
 		Class<?> clazz = o.getClass();
 		List<String> attrNames = new ArrayList<String>();
