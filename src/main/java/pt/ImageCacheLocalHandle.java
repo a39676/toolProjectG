@@ -27,7 +27,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-04 133126).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-07 110200).txt";
 
 	public String getFileNameFromUrl(String urlStr) {
 		Pattern pattern = Pattern.compile("^https?://(?:.*)(/\\S+\\.\\w{1,4})(?:\\?.*)?$");
@@ -103,12 +103,17 @@ public class ImageCacheLocalHandle {
 			caches.add(tmpIc);
 		}
 		
+		File tmpFolder = new File(tmpImageLocalPath);
+		if(!tmpFolder.exists()) {
+			tmpFolder.mkdirs();
+		}
+		
 		for(ImageCache ic : caches) {
 			getImageFromUrl(ic.getImageUrl(), tmpImageLocalPath + ic.getImageName());			
 		}
 		
 		Long l1 = System.currentTimeMillis();
-		Long l2 = l1 + (1000L * 60 * 10); // 10 minutes
+		Long l2 = l1 + (1000L * 60 * 1); // 1 minutes
 		while(l1 < l2) {
 			System.out.println("waiting..." + (l2 - l1) / 1000);
 			try {
@@ -123,7 +128,6 @@ public class ImageCacheLocalHandle {
 
 		String md5;
 		for(ImageCache ic : caches) {
-			getImageFromUrl(ic.getImageUrl(), tmpImageLocalPath + ic.getImageName());
 			md5 = getImageMD5(tmpImageLocalPath + ic.getImageName());
 			ic.setMd5Mark(md5);
 			imageCacheJsons.add(JSONObject.fromObject(ic));
