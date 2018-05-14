@@ -10,7 +10,8 @@ public class StringToolImpl {
 	
 	public boolean isTargetLine(String line) {
 //		return line.startsWith("\tprivate");
-		return line.contains("@param");
+//		return line.contains("@param");
+		return true;
 	}
 	
 	public boolean tmpCount(String line) {
@@ -28,7 +29,7 @@ public class StringToolImpl {
 		
 		for(String line : lines) {
 			if(isTargetLine(line)) {
-				System.out.println(st.underLineToCamel(line));
+				System.out.println(st.camelToUnderLine(line));
 				targetLineCount++;
 				if(tmpCount(line)) {
 					changeCount++;
@@ -47,7 +48,7 @@ public class StringToolImpl {
 		StringToolImpl t = new StringToolImpl();
 		String filePath;
 //		filePath = "D:\\wen-server\\git\\wen-server\\wen-common\\src\\main\\java\\com\\wen\\rongbao\\entity\\result\\FastMemberSplitBindCardResult.java";
-		filePath = "D:\\wen-server\\git\\wen-server\\wen-common\\src\\main\\java\\com\\wen\\rongbao\\RongBaoService.java";
+		filePath = "D:\\auxiliary/tmp/tmp.txt";
 		
 		t.conventLinesFromFile(filePath);
 	}
