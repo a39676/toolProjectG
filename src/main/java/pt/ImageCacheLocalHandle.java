@@ -27,7 +27,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-14 045453).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-20 234207).txt";
 
 	public String getFileNameFromUrl(String urlStr) {
 		urlStr = urlStr.replaceAll("\\s", "");
