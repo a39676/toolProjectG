@@ -10,6 +10,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +28,26 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-14 045453).txt";
+	private String cacheFilePath = "D:/auxiliary/tmp/imageCache(2018-05-17 122336).txt";
 
+	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
+	private List<String> skipFileName;
+	
+	public void loadSkipFileName() {
+		File f = new File(recordFilePath);
+		if(!f.exists() ) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
+		FileUtilCustom fu = new FileUtilCustom();
+		String fileStr = fu.getStringFromFile(recordFilePath);
+		skipFileName = Arrays.asList(fileStr.split("\n"));
+	}
+	
 	public String getFileNameFromUrl(String urlStr) {
 		urlStr = urlStr.replaceAll("\\s", "");
 		Pattern pattern = Pattern.compile("^https?://(?:.*)(/\\S+\\.\\w{1,4})(?:\\?.*)?$");
@@ -92,7 +111,7 @@ public class ImageCacheLocalHandle {
 		return result;
 	}
 
-	public void something() {
+	public void something(boolean skipFileExists) {
 		FileUtilCustom fu = new FileUtilCustom();
 
 		String fileStr = fu.getStringFromFile(cacheFilePath);
@@ -122,14 +141,22 @@ public class ImageCacheLocalHandle {
 		int urlSize = urlAndMd5.size();
 		int urlCount = 0;
 		for(String url : urlAndMd5.keySet()) {
+			System.out.println("getting from : " + url);
 			fileName = getFileNameFromUrl(url);
 			urlCount++;
-			System.out.println("get: " + fileName + ";(" + urlCount + "/" + urlSize + ")");
 			if(fileName == null || fileName.equals("null")) {
 				System.out.println("can not get: " + url);
 				continue;
 			}
-			getImageFromUrl(url, tmpImageLocalPath + fileName);
+			if(skipFileExists || skipFileName.contains(fileName)) {
+				if(!new File(tmpImageLocalPath + fileName).exists()) {
+					getImageFromUrl(url, tmpImageLocalPath + fileName);
+				}
+			} else {
+				getImageFromUrl(url, tmpImageLocalPath + fileName);
+			}
+			System.out.println("get: " + fileName + ";(" + urlCount + "/" + urlSize + ")");
+			fu.byteToFileAppendAtEnd((fileName + "\n").getBytes(), recordFilePath);
 		}
 		
 		
@@ -177,7 +204,8 @@ public class ImageCacheLocalHandle {
 
 	public static void main(String[] args) {
 		ImageCacheLocalHandle ih = new ImageCacheLocalHandle();
-		ih.something();
+		ih.loadSkipFileName();
+		ih.something(false);
 	}
 
 }
