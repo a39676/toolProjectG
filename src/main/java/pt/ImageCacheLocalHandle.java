@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-20 234207).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-24 100600).txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
 	private List<String> skipFileName;
@@ -141,7 +142,7 @@ public class ImageCacheLocalHandle {
 		int urlSize = urlAndMd5.size();
 		int urlCount = 0;
 		for(String url : urlAndMd5.keySet()) {
-			System.out.println("getting from : " + url);
+			System.out.println("getting from : " + url + " : " + LocalDateTime.now().toString());
 			fileName = getFileNameFromUrl(url);
 			urlCount++;
 			if(fileName == null || fileName.equals("null")) {
