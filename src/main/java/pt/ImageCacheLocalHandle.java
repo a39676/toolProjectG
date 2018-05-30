@@ -29,7 +29,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-24 100600).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-30 145727).txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
 	private List<String> skipFileName;
@@ -192,6 +192,8 @@ public class ImageCacheLocalHandle {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("done");
 	}
 	
 	public List<String> getFieldsName(Object o) {
