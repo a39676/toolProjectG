@@ -2,9 +2,13 @@ package job_test.east.urlTest.ttqd;
 
 import java.io.UnsupportedEncodingException;
 
+import org.apache.commons.codec.binary.Base64;
+
+import ioHandle.FileUtilCustom;
 import job_test.east.urlTest.commonAuxiliary.Auxiliary;
 import job_test.east.urlTest.commonAuxiliary.UrlTestConstant;
 import job_test.east.urlTest.commonAuxiliary.UrlTestDomain;
+import job_test.east.urlTest.ttjk.TtjkUrlTestConstant;
 import net.sf.json.JSONObject;
 import tool_package.http_tools.EastHttpTool;
 
@@ -71,6 +75,16 @@ public class TtqdUrlTestMain {
 		return sendGet(ed);
 	}
 	
+	private String uploadADPicture(byte[] pictureBase64) {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.uploadPayoutPicture);
+//		insertUserId(ed);
+		ed.insertKeyValue("image", new String(pictureBase64))
+		.insertKeyValue("phone", "13800138001")
+		.insertKeyValue("platformName", "平台1");
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
 	private void insertUserId(UrlTestDomain ed) {
 		JSONObject json = JSONObject.fromObject(ed.getParamData());
 		json.put("userId", eta.getId());
@@ -93,9 +107,8 @@ public class TtqdUrlTestMain {
 	}
 	
 	
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	public static void main(String[] args) throws Exception {
 		TtqdAuxiliary.setProject(UrlTestConstant.ttqd);
-		
 		TtqdUrlTestMain em = new TtqdUrlTestMain();
 //		em.userLogin();
 ////		
@@ -116,6 +129,12 @@ public class TtqdUrlTestMain {
 //		ed2.setParamData("{\"managerId\":-1,\"token\":\"593a0366413938b3f77991252799529e\",\"userId\":\"1\"}");
 		
 		System.out.println(em.sendGet(ed2));
+		
+		FileUtilCustom iou = new FileUtilCustom();
+		byte[] fileByte = iou.getByteFromFile("D:\\auxiliary\\tmp\\icon.jpg");
+		
+		System.out.println(em.uploadADPicture(Base64.encodeBase64(fileByte)));
+		
 	}
 
 }

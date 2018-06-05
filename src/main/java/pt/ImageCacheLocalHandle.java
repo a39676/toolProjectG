@@ -29,7 +29,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-06-01 101351).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-06-05 171118).txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
 	private List<String> skipFileName;
