@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import demo.tool.domain.ImageCache;
+import demo.image.domain.ImageCache;
 import encodeHandle.EncodeUtil;
 import ioHandle.FileUtilCustom;
 import net.sf.json.JSONArray;
@@ -29,7 +29,7 @@ public class ImageCacheLocalHandle {
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 
-	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-05-30 145727).txt";
+	private String cacheFilePath = "D:\\auxiliary\\tmp/imageCache(2018-06-02 215614).txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
 	private List<String> skipFileName;
