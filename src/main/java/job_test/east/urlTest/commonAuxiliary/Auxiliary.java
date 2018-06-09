@@ -29,7 +29,7 @@ public class Auxiliary {
 	
 	public static void setProject(int projectNum) {
 		if(projectNum == UrlTestConstant.ttqd) {
-			mainHost = "http://localhost:10000/";
+			mainHost = "http://localhost:9002/";
 			idName = UrlTestConstant.userId;
 			testUrlDomains = TtqdAuxiliary.loadTtqdUrlDomains();
 			

@@ -156,6 +156,11 @@ public class TtqdAuxiliary extends Auxiliary {
 		domain.setDomainName(TtqdUrlTestConstant.redirectToApplyUrl);
 		domain.setUrl(mainHost + "api/app/v1/product/redirectToApplyUrl");
 		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.uploadPayoutPicture);
+		domain.setUrl(mainHost + "api/app/v1/payout/uploadPayoutApplyImage");
+		testUrlDomains.add(domain);
 
 		return testUrlDomains;
 	}

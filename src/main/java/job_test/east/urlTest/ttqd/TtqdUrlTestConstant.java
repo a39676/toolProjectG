@@ -29,4 +29,6 @@ public class TtqdUrlTestConstant {
 	public static String getMyCollectList = "getMyCollectList";
 	public static String getAllTagProductList = "getAllTagProductList";
 	public static String redirectToApplyUrl = "redirectToApplyUrl";
+	public static String uploadPayoutPicture = "uploadPayoutPicture";
+	
 }
