@@ -29,7 +29,8 @@ public class Auxiliary {
 	
 	public static void setProject(int projectNum) {
 		if(projectNum == UrlTestConstant.ttqd) {
-			mainHost = "http://localhost:9002/";
+//			mainHost = "http://localhost:9002/";
+			mainHost = "https://apits.ttqiandai.com/";
 			idName = UrlTestConstant.userId;
 			testUrlDomains = TtqdAuxiliary.loadTtqdUrlDomains();
 			

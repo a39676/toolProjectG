@@ -2,6 +2,7 @@ package tool_package.io_tools;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,48 +24,58 @@ import utils.sql_utils.MySqlTools;
  * */
 public class IOToolWithExcl {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// String path = "d:" + File.separator + "auxiliary" + File.separator +
 		// "tmp" + File.separator;
 		// String file = "test01.xlsx";
 
-		String path = "src/main/resources/tmp/test01.xlsx";
+		String path = "d:/auxiliary/tmp/test01.xlsx";
+
+//		Workbook workbook = null;
+//		try {
+//			workbook = new XSSFWorkbook(new FileInputStream(new File(path)));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		if (workbook != null) {
+//			findElementsTest(workbook, 0, "ta");
+//		}
+		
+		readExcl(path);
+	}
+
+	public static void readExcl(String path) throws IOException {
 
 		Workbook workbook = null;
 		try {
 			workbook = new XSSFWorkbook(new FileInputStream(new File(path)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		if (workbook != null) {
-			findElementsTest(workbook, 0, "ta");
-		}
-	}
-
-	public static void readExcl() {
-		String path = "d:" + File.separator + "auxiliary" + File.separator + "tmp" + File.separator;
-		String file = "test01.xlsx";
-
-		try {
-			Workbook workbook = new XSSFWorkbook(new FileInputStream(new File(path + file)));
 			Sheet firstSheet = workbook.getSheetAt(0);
 			Cell tmpCell = null;
-			Row row01 = firstSheet.getRow(0);
-			for (int i = 0; i < 3; i++) {
-				if (row01.getCell(i) != null) {
-					tmpCell = row01.getCell(i);
-				} else {
-					tmpCell.setCellValue("");
+			Row tmpRow = null;
+			for(int i = 0; i < firstSheet.getLastRowNum() + 1; i++) {
+				tmpRow = firstSheet.getRow(i);
+				if(tmpRow != null) {
+					for (int j = 0; j < tmpRow.getLastCellNum(); j++) {
+						if (tmpRow.getCell(j) != null) {
+							tmpCell = tmpRow.getCell(j);
+						} else {
+							tmpCell.setCellValue("");
+						}
+						System.out.println(tmpCell.toString());
+					}
 				}
-				System.out.println(tmpCell.toString());
 			}
 
-//			workbook.close();
+			workbook.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if(workbook != null) {
+				workbook.close();
+			}
 		}
 	}
 

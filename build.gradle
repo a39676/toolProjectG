@@ -80,6 +80,7 @@ dependencies {
     compile files('src/libs/org.json.simple-0.4.jar')
     compile files('src/libs/poi-3.15.jar')
     compile files('src/libs/poi-ooxml-3.15.jar')
+    compile files('src/libs/poi-ooxml-schemas-3.15.jar')
     compile files('src/libs/servlet-api-3.0-alpha-1.jar')
     compile files('src/libs/slf4j-api-1.7.21.jar')
     compile files('src/libs/slf4j-log4j12-1.7.21.jar')
