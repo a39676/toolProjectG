@@ -384,37 +384,9 @@ public class TtjkUrlTestMain {
 		System.out.println("login status: " + em.userLogin());
 		System.out.println(new TtjkAuxiliary().getToken());
 		
-//		ok
-		SystemNoticeInfo info = new SystemNoticeInfo();
-		info.setNoticeIndex(1);
-		info.setOnline(true);
-		info.setTitle("测试通知标题-无链接");
-		info.setUrl("不应该出现的链接");
-		info.setNoticeSrcType(3);
-		System.out.println(em.addSystemNotice(info));
+		em.uploadADPicture(null);
+
 		
-		info = new SystemNoticeInfo();
-		info.setNoticeIndex(1);
-		info.setOnline(true);
-		info.setTitle("测试通知标题-有链接");
-		info.setUrl("http://www.baidu.com");
-		info.setNoticeSrcType(1);
-		System.out.println(em.addSystemNotice(info));
-		
-		System.out.println(em.getSystemNoticeList(1, 10)); // ok
-		System.out.println(em.systemNoticeDetail(1L)); // ok
-		
-		
-//		SystemNoticeInfo info = new SystemNoticeInfo();
-//		info.setId(1L);
-//		info.setNoticeIndex(1);
-//		info.setOnline(true);
-//		info.setTitle("测试通知标题-无链接-改有链接");
-//		info.setUrl("http://www.baidu.com/2");
-//		info.setNoticeSrcType(1);
-//		System.out.println(em.editSystemNotice(info)); // ok
-		
-//		System.out.println(em.deleteSystemNotice(3L)); // ok
 	}
 
 }
