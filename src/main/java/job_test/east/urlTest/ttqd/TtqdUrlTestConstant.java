@@ -30,5 +30,11 @@ public class TtqdUrlTestConstant {
 	public static String getAllTagProductList = "getAllTagProductList";
 	public static String redirectToApplyUrl = "redirectToApplyUrl";
 	public static String uploadPayoutPicture = "uploadPayoutPicture";
+	public static String findInformationMainTagOrderByWeights = "findInformationMainTagOrderByWeights";
+	public static String findInformationSubTagByInformationMainTagIds = "findInformationSubTagByInformationMainTagIds";
+	public static String findInformationVOMapByMainTagId = "findInformationVOMapByMainTagId";
+	public static String findInformationHot = "findInformationHot";
+	public static String findInformationVOMap = "findInformationVOMap";
+	public static String updateShowDC = "updateShowDC";
 	
 }

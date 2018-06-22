@@ -161,6 +161,36 @@ public class TtqdAuxiliary extends Auxiliary {
 		domain.setDomainName(TtqdUrlTestConstant.uploadPayoutPicture);
 		domain.setUrl(mainHost + "api/app/v1/payout/uploadPayoutApplyImage");
 		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.findInformationMainTagOrderByWeights);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationMainTagOrderByWeights");
+		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.findInformationSubTagByInformationMainTagIds);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationSubTagByInformationMainTagIds");
+		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.findInformationVOMapByMainTagId);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationVOMapByMainTagId");
+		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.findInformationHot);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationHot");
+		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.findInformationVOMap);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationVOMap");
+		testUrlDomains.add(domain);
+		
+		domain = new UrlTestDomain();
+		domain.setDomainName(TtqdUrlTestConstant.updateShowDC);
+		domain.setUrl(mainHost + "api/app/v1/operation/information/updateShowDC");
+		testUrlDomains.add(domain);
 
 		return testUrlDomains;
 	}

@@ -1,14 +1,11 @@
 package job_test.east.urlTest.ttqd;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
-
-import ioHandle.FileUtilCustom;
-import job_test.east.urlTest.commonAuxiliary.Auxiliary;
 import job_test.east.urlTest.commonAuxiliary.UrlTestConstant;
 import job_test.east.urlTest.commonAuxiliary.UrlTestDomain;
-import job_test.east.urlTest.ttjk.TtjkUrlTestConstant;
 import net.sf.json.JSONObject;
 import tool_package.http_tools.EastHttpTool;
 
@@ -85,6 +82,55 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
+	private String updateShowDC(boolean flag) {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.updateShowDC);
+		if(flag) {
+			ed.insertKeyValue("showDC", "true");
+		} else {
+			ed.insertKeyValue("showDC", "false");
+		}
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
+	private String findInformationMainTagOrderByWeights() {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationMainTagOrderByWeights);
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
+	private String findInformationSubTagByInformationMainTagIds(List<String> searchIds, String isOnlie) {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationSubTagByInformationMainTagIds);
+		ed.insertKeyValue("pageNo", "1")
+		.insertKeyValue("pageSize", "10")
+		.insertKeyValue("searchIds", searchIds.toString())
+		.insertKeyValue("isOnline", isOnlie);
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
+	private String findInformationVOMapByMainTagId(Integer mainTagId) {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationVOMapByMainTagId);
+		ed.insertKeyValue("pageNo", "1")
+		.insertKeyValue("pageSize", "10")
+		.insertKeyValue("id", String.valueOf(mainTagId));
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
+	private String findInformationHot() {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationHot);
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
+	private String findInformationVOMap(Long id) {
+		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationVOMap);
+		ed.insertKeyValue("id", id.toString());
+		System.out.println(ed.getUrl());
+		return sendPost(ed);
+	}
+	
 	private void insertUserId(UrlTestDomain ed) {
 		JSONObject json = JSONObject.fromObject(ed.getParamData());
 		json.put("userId", eta.getId());
@@ -121,19 +167,18 @@ public class TtqdUrlTestMain {
 //		ed.setParamData("{\"pageNo\":\"1\", \"pageSize\":\"10\"}");
 //		em.insertUserId(ed);
 		
-		UrlTestDomain ed2 = new UrlTestDomain();
-//		ed2.setUrl("http://localhost:8080/system/getMenuList.action");
-//		ed2.setParamData("{\"managerId\":-1,\"token\":\"593a0366413938b3f77991252799529e\",\"userId\":\"1\"}");
-//		em.insertUserId(ed2);
-		ed2.setUrl("http://localhost:8080/xkmall-admin/operate/test.action");
-//		ed2.setParamData("{\"managerId\":-1,\"token\":\"593a0366413938b3f77991252799529e\",\"userId\":\"1\"}");
 		
-		System.out.println(em.sendGet(ed2));
+//		FileUtilCustom iou = new FileUtilCustom();
+//		byte[] fileByte = iou.getByteFromFile("D:\\auxiliary\\tmp\\icon.jpg");
+//		System.out.println(em.uploadADPicture(Base64.encodeBase64(fileByte)));
 		
-		FileUtilCustom iou = new FileUtilCustom();
-		byte[] fileByte = iou.getByteFromFile("D:\\auxiliary\\tmp\\icon.jpg");
-		
-		System.out.println(em.uploadADPicture(Base64.encodeBase64(fileByte)));
+//		System.out.println(em.updateShowDC(true));
+//		System.out.println(em.updateShowDC(false));
+		System.out.println(em.findInformationMainTagOrderByWeights());
+//		System.out.println(em.findInformationSubTagByInformationMainTagIds(Arrays.asList("1","2","3"), "1"));
+//		System.out.println(em.findInformationVOMapByMainTagId(null));
+//		System.out.println(em.findInformationHot());
+		System.out.println(em.findInformationVOMap(1L));
 		
 	}
 
