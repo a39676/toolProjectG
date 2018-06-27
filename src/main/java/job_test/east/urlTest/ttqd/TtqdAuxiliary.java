@@ -164,32 +164,32 @@ public class TtqdAuxiliary extends Auxiliary {
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.findInformationMainTagOrderByWeights);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationMainTagOrderByWeights");
+		domain.setUrl(mainHost + "api/app/v1/information/findInformationMainTagOrderByWeights");
 		testUrlDomains.add(domain);
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.findInformationSubTagByInformationMainTagIds);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationSubTagByInformationMainTagIds");
+		domain.setUrl(mainHost + "api/app/v1/information/findInformationSubTagByInformationMainTagIds");
 		testUrlDomains.add(domain);
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.findInformationVOMapByMainTagId);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationVOMapByMainTagId");
+		domain.setUrl(mainHost + "api/app/v1/information/findInformationVOMapByMainTagId");
 		testUrlDomains.add(domain);
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.findInformationHot);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationHot");
+		domain.setUrl(mainHost + "api/app/v1/information/findInformationHot");
 		testUrlDomains.add(domain);
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.findInformationVOMap);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/findInformationVOMap");
+		domain.setUrl(mainHost + "api/app/v1/information/findInformationVOMap");
 		testUrlDomains.add(domain);
 		
 		domain = new UrlTestDomain();
 		domain.setDomainName(TtqdUrlTestConstant.updateShowDC);
-		domain.setUrl(mainHost + "api/app/v1/operation/information/updateShowDC");
+		domain.setUrl(mainHost + "api/app/v1/information/updateShowDC");
 		testUrlDomains.add(domain);
 
 		return testUrlDomains;
