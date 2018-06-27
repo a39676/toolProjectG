@@ -9,12 +9,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,11 +32,12 @@ public class ImageCacheLocalHandle {
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 	private String resultOutputPath = "d:/auxiliary/tmp/";
 
-	private String fileNamePart = "imageCache(2018-06-22 215443)";
+	private String fileNamePart = "imageCache(2018-06-25 103529)";
 	private String cacheFilePath = "D:/auxiliary/tmp/" + fileNamePart + ".txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
 	private List<String> skipFileName;
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public void loadSkipFileName() {
 		File f = new File(recordFilePath);
@@ -61,12 +64,15 @@ public class ImageCacheLocalHandle {
 		return null;
 	}
 
-	public File getImageFromUrl(String urlStr, String savePath) {
-		File f = new File(savePath);
+	public File downloadImageFromUrl(String savePathPrefix, ImageCache ic) {
+		File f = new File(createStorePath(savePathPrefix, ic));
+		if(!f.getParentFile().exists()) {
+			f.getParentFile().mkdirs();
+		}
 		URL url;
 
 		try {
-			url = new URL(urlStr);
+			url = new URL(ic.getImageUrl());
 			ReadableByteChannel rbc = Channels.newChannel(url.openStream());
 			FileOutputStream fos = new FileOutputStream(f.getAbsolutePath());
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
@@ -102,6 +108,9 @@ public class ImageCacheLocalHandle {
 		return imageMD5;
 	}
 
+	private String createStorePath(String savePathPrefix, ImageCache ic) {
+		return savePathPrefix + sdf.format(ic.getCreateTime()) + "/" + String.valueOf(ic.getImageTag().intValue()) + "/" + ic.getImageName();
+	}
 
 	public HashMap<String, Integer> getKeyIndex(String line) {
 		String[] columnNames = line.split("\\t");
@@ -123,7 +132,8 @@ public class ImageCacheLocalHandle {
 		JSONObject jsonInput = JSONObject.fromObject(fileStr);
 		JSONArray imageCacheJsons = jsonInput.getJSONArray("imageCache");
 		
-		HashMap<String, String> urlAndMd5 = new HashMap<String, String>();
+//		HashMap<String, String> urlAndMd5 = new HashMap<String, String>();
+		HashMap<String, ImageCache> imageCacheByUrl = new HashMap<String, ImageCache>();
 		
 		ImageCache tmpIc;
 		for(int i = 0; i < imageCacheJsons.size(); i ++) {
@@ -133,7 +143,9 @@ public class ImageCacheLocalHandle {
 			caches.add(tmpIc);
 		}
 		
-		caches.stream().forEach(ic -> urlAndMd5.put(ic.getImageUrl(), ""));
+		caches.stream().forEach(ic -> ic.setImageName(getFileNameFromUrl(ic.getImageUrl())));
+		caches.stream().forEach(ic -> imageCacheByUrl.put(ic.getImageUrl(), ic));
+		
 		
 		File tmpFolder = new File(tmpImageLocalPath);
 		if(!tmpFolder.exists()) {
@@ -141,22 +153,22 @@ public class ImageCacheLocalHandle {
 		}
 		
 		String fileName;
-		int urlSize = urlAndMd5.size();
+		int urlSize = imageCacheByUrl.size();
 		int urlCount = 0;
-		for(String url : urlAndMd5.keySet()) {
-			System.out.println("getting from : " + url + " : " + LocalDateTime.now().toString());
-			fileName = getFileNameFromUrl(url);
+		for(Entry<String, ImageCache> entry : imageCacheByUrl.entrySet()) {
+			System.out.println("getting from : " + entry.getValue().getImageName() + " : " + LocalDateTime.now().toString());
+			fileName = getFileNameFromUrl(entry.getKey());
 			urlCount++;
 			if(fileName == null || fileName.equals("null")) {
-				System.out.println("can not get: " + url);
+				System.out.println("can not get: " + entry.getKey());
 				continue;
 			}
 			if(skipFileExists || skipFileName.contains(fileName)) {
 				if(!new File(tmpImageLocalPath + fileName).exists()) {
-					getImageFromUrl(url, tmpImageLocalPath + fileName);
+					downloadImageFromUrl(tmpImageLocalPath, entry.getValue());
 				}
 			} else {
-				getImageFromUrl(url, tmpImageLocalPath + fileName);
+				downloadImageFromUrl(tmpImageLocalPath, entry.getValue());
 			}
 			System.out.println("get: " + fileName + ";(" + urlCount + "/" + urlSize + ")");
 			fu.byteToFileAppendAtEnd((fileName + "\n").getBytes(), recordFilePath);
@@ -179,10 +191,14 @@ public class ImageCacheLocalHandle {
 		imageCacheJsons.clear();
 
 		String md5;
+		
+		for(Entry<String, ImageCache> entry : imageCacheByUrl.entrySet()) {
+			md5 = getImageMD5(createStorePath(tmpImageLocalPath, entry.getValue()));
+			entry.getValue().setMd5Mark(md5);
+		}
+		
 		for(ImageCache ic : caches) {
-			md5 = getImageMD5(tmpImageLocalPath + ic.getImageName());
-			ic.setMd5Mark(md5);
-			urlAndMd5.put(ic.getImageUrl(), md5);
+			ic.setMd5Mark(imageCacheByUrl.get(ic.getImageUrl()).getMd5Mark());
 			imageCacheJsons.add(JSONObject.fromObject(ic));
 		}
 		
