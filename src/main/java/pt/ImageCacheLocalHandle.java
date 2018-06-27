@@ -32,7 +32,7 @@ public class ImageCacheLocalHandle {
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 	private String resultOutputPath = "d:/auxiliary/tmp/";
 
-	private String fileNamePart = "imageCache(2018-06-25 103529)";
+	private String fileNamePart = "imageCache(2018-06-27 204308)";
 	private String cacheFilePath = "D:/auxiliary/tmp/" + fileNamePart + ".txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
@@ -177,11 +177,11 @@ public class ImageCacheLocalHandle {
 		
 		
 		Long l1 = System.currentTimeMillis();
-		Long l2 = l1 + (1000L * 30); // 30 seconds
+		Long l2 = l1 + (1000L * 3); // 3 seconds
 		while(l1 < l2) {
 			System.out.println("waiting..." + (l2 - l1) / 1000);
 			try {
-				Thread.sleep(10000L);
+				Thread.sleep(1000L);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
