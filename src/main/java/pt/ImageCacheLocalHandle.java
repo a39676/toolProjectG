@@ -28,6 +28,7 @@ public class ImageCacheLocalHandle {
 
 	private String imageName = "fileNameForMD5";
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
+	private String resultOutputPath = "d:/auxiliary/tmp/";
 
 	private String fileNamePart = "imageCache(2018-06-22 215443)";
 	private String cacheFilePath = "D:/auxiliary/tmp/" + fileNamePart + ".txt";
@@ -189,7 +190,7 @@ public class ImageCacheLocalHandle {
 		jsonOutput.put("imageCache", imageCacheJsons);
 		
 		try {
-			fu.byteToFile(jsonOutput.toString().getBytes("utf8"), tmpImageLocalPath + "imageCacheHandled" + System.currentTimeMillis() + ".txt");
+			fu.byteToFile(jsonOutput.toString().getBytes("utf8"), resultOutputPath + "imageCacheHandled" + System.currentTimeMillis() + ".txt");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
