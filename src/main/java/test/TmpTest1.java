@@ -1,20 +1,23 @@
 package test;
 
-import numericHandel.NumericUtilCustom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TmpTest1 {
 
 	public static void main(String[] args) {
-		
-		System.out.println(NumericUtilCustom.longToIp(1822461375L));
-		System.out.println(NumericUtilCustom.longToIp(2673416181L));
-		System.out.println(NumericUtilCustom.longToIp(856676793L));
-		System.out.println(NumericUtilCustom.longToIp(630233103L));
-		System.out.println(NumericUtilCustom.longToIp(2335923319L));
-		System.out.println(NumericUtilCustom.longToIp(1822461375L));
-		System.out.println(NumericUtilCustom.longToIp(1757432338L));
-		System.out.println(NumericUtilCustom.longToIp(1822461375L));
-		
+
+		String url = "http://www.seekingdreamwork.site/test/test";
+		Pattern p = Pattern.compile("(?!:http://)(?!:www\\.){0,1}([0-9a-zA-Z_]+\\.[a-z]{1,8})(?!:/.*)");
+		Matcher m = p.matcher(url);
+
+		if (m.find()) {
+			for (int i = 0; i <= m.groupCount(); i++) {
+				System.out.println(m.group(i));
+			}
+		} else {
+			System.out.println("not found");
+		}
 	}
-	
+
 }
