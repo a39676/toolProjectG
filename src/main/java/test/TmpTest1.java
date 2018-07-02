@@ -1,21 +1,19 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.List;
+import numericHandel.NumericUtilCustom;
 
 public class TmpTest1 {
 
 	public static void main(String[] args) {
 		
-		List<Integer> l = new ArrayList<Integer>();
-		
-		for(int i = 0; i < 30; i++) {
-			l.add(i);
-			if(i % 10 == 0 || i == 30) {
-				System.out.println(l);
-				l.clear();
-			}
-		}
+		System.out.println(NumericUtilCustom.longToIp(1822461375L));
+		System.out.println(NumericUtilCustom.longToIp(2673416181L));
+		System.out.println(NumericUtilCustom.longToIp(856676793L));
+		System.out.println(NumericUtilCustom.longToIp(630233103L));
+		System.out.println(NumericUtilCustom.longToIp(2335923319L));
+		System.out.println(NumericUtilCustom.longToIp(1822461375L));
+		System.out.println(NumericUtilCustom.longToIp(1757432338L));
+		System.out.println(NumericUtilCustom.longToIp(1822461375L));
 		
 	}
 	

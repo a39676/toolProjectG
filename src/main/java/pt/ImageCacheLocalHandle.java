@@ -32,7 +32,7 @@ public class ImageCacheLocalHandle {
 	private String tmpImageLocalPath = "d:/auxiliary/tmp/imageCache/";
 	private String resultOutputPath = "d:/auxiliary/tmp/";
 
-	private String fileNamePart = "imageCache(2018-06-27 204308)";
+	private String fileNamePart = "imageCache(2018-06-30 171105)";
 	private String cacheFilePath = "D:/auxiliary/tmp/" + fileNamePart + ".txt";
 
 	private String recordFilePath = "d:/auxiliary/tmp/recordImageCache.txt";
