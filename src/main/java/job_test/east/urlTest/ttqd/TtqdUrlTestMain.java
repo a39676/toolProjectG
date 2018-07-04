@@ -174,10 +174,10 @@ public class TtqdUrlTestMain {
 		
 //		System.out.println(em.updateShowDC(true));
 //		System.out.println(em.updateShowDC(false));
-//		System.out.println(em.findInformationMainTagOrderByWeights());
+		System.out.println(em.findInformationMainTagOrderByWeights());
 //		System.out.println(em.findInformationSubTagByInformationMainTagIds(Arrays.asList("1","2","3"), "1"));
-//		System.out.println(em.findInformationVOMapByMainTagId(21));
-		System.out.println(em.findInformationHot());
+		System.out.println(em.findInformationVOMapByMainTagId(21));
+//		System.out.println(em.findInformationHot());
 //		System.out.println(em.findInformationVOMap(2L));
 	} 
 
