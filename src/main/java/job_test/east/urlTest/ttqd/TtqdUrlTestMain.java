@@ -109,10 +109,10 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String findInformationVOMapByMainTagId(Integer mainTagId) {
+	private String findInformationVOMapByMainTagId(Integer mainTagId, Integer pageNo, Integer pageSize) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationVOMapByMainTagId);
-		ed.insertKeyValue("pageNo", "1")
-		.insertKeyValue("pageSize", "10")
+		ed.insertKeyValue("pageNo", pageNo.toString())
+		.insertKeyValue("pageSize", pageSize.toString())
 		.insertKeyValue("id", String.valueOf(mainTagId));
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
@@ -174,9 +174,9 @@ public class TtqdUrlTestMain {
 		
 //		System.out.println(em.updateShowDC(true));
 //		System.out.println(em.updateShowDC(false));
-		System.out.println(em.findInformationMainTagOrderByWeights());
+//		System.out.println(em.findInformationMainTagOrderByWeights());
 //		System.out.println(em.findInformationSubTagByInformationMainTagIds(Arrays.asList("1","2","3"), "1"));
-		System.out.println(em.findInformationVOMapByMainTagId(21));
+		System.out.println(em.findInformationVOMapByMainTagId(2, 1, 10));
 //		System.out.println(em.findInformationHot());
 //		System.out.println(em.findInformationVOMap(2L));
 	} 
