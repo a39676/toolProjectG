@@ -19,7 +19,7 @@ public class RsaTool01 {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchProviderException {
 		RsaTool01 r1 = new RsaTool01();
-		r1.generateKeys("RSA", 1024);
+		RsaTool01.generateKeys("RSA", 1024);
 		r1.genrateRsaPublicKeyInHexString();
 		r1.generateRsaPublicKeyAsByte();
 	}
@@ -67,8 +67,8 @@ public class RsaTool01 {
 			byte[] publicKeyBytes = publicKey.getEncoded();
 
 			// Get the formats of the encoded bytes
-			String formatPrivate = privateKey.getFormat(); // PKCS#8
-			String formatPublic = publicKey.getFormat(); // X.509
+//			String formatPrivate = privateKey.getFormat(); // PKCS#8
+//			String formatPublic = publicKey.getFormat(); // X.509
 
 //			System.out.println("Private Key : " + Base64.encode(String.valueOf(privateKeyBytes)));
 			System.out.println("Private Key : " + new String(Base64.encode(String.valueOf(privateKeyBytes))));

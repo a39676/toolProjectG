@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import tool_package.io_tools.IOtools;
+import ioHandle.FileUtilCustom;
 import utils.constant.LocalEnvironmentConstant;
 import utils.sql_utils.MySQLDBUtility;
 import utils.sql_utils.MySqlTmpTool;
@@ -164,7 +164,7 @@ public class SqlTool {
 	public void keepAliveAndExecuteOrder() throws InterruptedException {
 		
 		MySqlTools mySqlTool01 = new MySqlTools();
-		IOtools ioTool = new IOtools();
+		FileUtilCustom ioTool = new FileUtilCustom();
 		
 		Connection connect = null;
 		String sql = null;
@@ -252,7 +252,7 @@ public class SqlTool {
 		int startIndex = 1;
 		int endIndex = 120000;
 		
-		IOtools io = new IOtools();
+		FileUtilCustom io = new FileUtilCustom();
 		
 		String inputUidString = io.getStringFromFile(inputIDFilePath);
 		String[] uidArr = inputUidString.split(",");

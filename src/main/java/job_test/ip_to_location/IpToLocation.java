@@ -8,17 +8,17 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Service;
 
+import ioHandle.FileUtilCustom;
 import tool_package.http_tools.JuHeHttpTool;
-import tool_package.io_tools.IOtools;
 
 @Service
 public class IpToLocation{
 	
 //	http://restapi.amap.com/v3/ip?parameters
-	private IOtools ioTool = new IOtools();
+	private FileUtilCustom ioTool = new FileUtilCustom();
 	private String opNumberPart = "178";
-	private Integer numberStart = 0;
-	private Integer numberEnd = 9999;
+//	private Integer numberStart = 0;
+//	private Integer numberEnd = 9999;
 	private JuHeHttpTool hc = new JuHeHttpTool();
 	private String outputResultFilePath = "d:/auxiliary/ipProject/" + opNumberPart + ".txt";
 	

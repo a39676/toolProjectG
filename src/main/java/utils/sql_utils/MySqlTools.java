@@ -24,7 +24,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import tool_package.io_tools.IOtools;
+import ioHandle.FileUtilCustom;
 import tool_package.io_tools.MysqlIOtools01;
 
 /**
@@ -909,7 +909,7 @@ public class MySqlTools {
 		Statement selectAllStatement = null;
 		
 		StringBuffer sb = new StringBuffer();
-		IOtools ioTool = new IOtools();
+		FileUtilCustom ioTool = new FileUtilCustom();
 		
 		try {
 			selectAllStatement = conn.prepareStatement(selectAllSql);

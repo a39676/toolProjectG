@@ -11,12 +11,12 @@ import org.apache.poi.ss.usermodel.Row;
 
 public class MySqlComponents {
 	
-	private static final List<String> sqlMetaDataTypeList = new ArrayList<String>(
-			Arrays.asList("columnName", "columnType", "collationName", "inNullable", "columnKey", "columnDefault",
-					"extra", "privileges", "columnComment"));
-
-	private static final List<String> mysqlStringDataType = Arrays.asList("char", "varchar", "text", "binary",
-			"varbinary", "enum", "set");
+//	private static final List<String> sqlMetaDataTypeList = new ArrayList<String>(
+//			Arrays.asList("columnName", "columnType", "collationName", "inNullable", "columnKey", "columnDefault",
+//					"extra", "privileges", "columnComment"));
+//
+//	private static final List<String> mysqlStringDataType = Arrays.asList("char", "varchar", "text", "binary",
+//			"varbinary", "enum", "set");
 	
 	public static boolean metaFlag;
 	
@@ -58,6 +58,8 @@ public class MySqlComponents {
 
 	// 11 toolList reference numOfList
 	public static List<List<String>> allList = new ArrayList<List<String>>() {
+		private static final long serialVersionUID = 8316456133068386969L;
+
 		{
 			add(new ArrayList<String>());
 			add(new ArrayList<String>());

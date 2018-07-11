@@ -1,6 +1,6 @@
 package utils.sql_utils;
 
-import tool_package.io_tools.IOtools;
+import ioHandle.FileUtilCustom;
 import utils.constant.LocalEnvironmentConstant;
 
 public class CommonSqlTools {
@@ -11,7 +11,7 @@ public class CommonSqlTools {
 	 * @return
 	 */
 	public String getSqlFromFile(String path) {
-		IOtools iotool = new IOtools(); 
+		FileUtilCustom iotool = new FileUtilCustom(); 
 		String sql = null;
 		byte[] data = null;
 		try {
@@ -24,9 +24,8 @@ public class CommonSqlTools {
 	}
 	
 	public static void main(String[] args) {
-		LocalEnvironmentConstant constant = new LocalEnvironmentConstant();
 		CommonSqlTools tool = new CommonSqlTools();
-		System.out.println(tool.getSqlFromFile(constant.inputPath));
+		System.out.println(tool.getSqlFromFile(LocalEnvironmentConstant.inputPath));
 	}
 
 }

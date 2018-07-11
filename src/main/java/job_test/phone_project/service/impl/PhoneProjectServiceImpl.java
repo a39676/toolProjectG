@@ -8,15 +8,15 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Service;
 
+import ioHandle.FileUtilCustom;
 import job_test.phone_project.service.PhoneProjectService;
 import tool_package.http_tools.JuHeHttpTool;
-import tool_package.io_tools.IOtools;
 
 @Service
 public class PhoneProjectServiceImpl implements PhoneProjectService{
 	
 //	"http://apis.juhe.cn/mobile/get?phone=13800138000&dtype=json&key=6f93fcb77088aa0f1d888945f23b4a4c";
-	private IOtools ioTool = new IOtools();
+	private FileUtilCustom ioTool = new FileUtilCustom();
 	private String opNumberPart = "178";
 	private Integer numberStart = 0;
 	private Integer numberEnd = 9999;

@@ -11,14 +11,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import tool_package.io_tools.IOtools;
+import ioHandle.FileUtilCustom;
 
 /**
  * 聚合数据http请求工具
  */
 public class JuHeHttpTool {
 	
-	private IOtools t02 = new IOtools();
+	private FileUtilCustom t02 = new FileUtilCustom();
 	
 	private String targetUrl = "http://apis.juhe.cn/mobile/get?phone=13800138000&dtype=json&key=6f93fcb77088aa0f1d888945f23b4a4c";
 	
