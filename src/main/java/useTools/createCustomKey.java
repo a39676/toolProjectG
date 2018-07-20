@@ -34,8 +34,8 @@ public class createCustomKey {
 				key.add(tmpKeyChar.remove(randInt));
 			}
 			keys.add(key);
+			System.out.println(key.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", ""));
 		}
-		System.out.println(keys);
 		return keys;
 	}
 	
