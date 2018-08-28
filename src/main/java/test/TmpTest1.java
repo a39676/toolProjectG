@@ -1,20 +1,39 @@
 package test;
 
-import numericHandel.NumericUtilCustom;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class TmpTest1 {
 
 	public static void main(String[] args) {
-		System.out.println(NumericUtilCustom.longToIp(2130706433L));
-		System.out.println(NumericUtilCustom.longToIp(1822461375L));
-		System.out.println(NumericUtilCustom.longToIp(2102924730L));
-		System.out.println(NumericUtilCustom.longToIp(1971855321L));
-		System.out.println(NumericUtilCustom.longToIp(1757432364L));
-		System.out.println(NumericUtilCustom.longToIp(1161474616L));
-		System.out.println(NumericUtilCustom.longToIp(2026686546L));
-		System.out.println(NumericUtilCustom.longToIp(1709409271L));
-		System.out.println(NumericUtilCustom.longToIp(1032852667L));
-		
+	    URL url;
+	    InputStream is = null;
+	    BufferedReader br;
+	    String line;
+
+	    try {
+	        url = new URL("https://500px.com/photo/264318961/vasyliza-by-nikita-shvedov?ctx_page=1&from=user&user_id=9382325");
+	        is = url.openStream();  // throws an IOException
+	        br = new BufferedReader(new InputStreamReader(is));
+
+	        while ((line = br.readLine()) != null) {
+	            System.out.println(line);
+	        }
+	    } catch (MalformedURLException mue) {
+	         mue.printStackTrace();
+	    } catch (IOException ioe) {
+	         ioe.printStackTrace();
+	    } finally {
+	        try {
+	            if (is != null) is.close();
+	        } catch (IOException ioe) {
+	            // nothing to see here
+	        }
+	    }
 	}
 }
 

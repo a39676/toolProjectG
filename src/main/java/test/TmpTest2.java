@@ -1,90 +1,71 @@
 package test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import ioHandle.FileUtilCustom;
 
 public class TmpTest2 {
+	
+//	TODO
+//	尚不可删除
+//	
+	private static FileUtilCustom io = new FileUtilCustom();
+	private static String mainFloderPath = "d:/auxiliary/tmp/test/";
 
-	public static void main(String[] args) {
-		List<List<Character>> keys = buildKeys();
-		String id = "100";
-		String encryptId = customEncrypt(keys, id);
-		System.out.println(encryptId);
+	public static void main(String[] args) throws IOException {
 		
-		String decryptId = customDecrypt(keys, encryptId);
-		System.out.println(decryptId);
-	}
-	
-	public static List<List<Character>> buildKeys() {
-		String keyStr = "1234567890_qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-		List<Character> tmpKeyChar = new ArrayList<Character>();
+		File mainFolder = new File(mainFloderPath);
 		
-		int randInt = 0;
-		List<List<Character>> keys = new ArrayList<List<Character>>();
-		List<Character> key = null;
-
-		for(int i = 0; i < 10; i++) {
-			key = new ArrayList<Character>();
-			reFill(tmpKeyChar, keyStr);
-			for(int j = 0;j < 10; j++) {
-				randInt = ThreadLocalRandom.current().nextInt(0, tmpKeyChar.size());
-				key.add(tmpKeyChar.remove(randInt));
-			}
-			keys.add(key);
-		}
-		System.out.println(keys);
-		return keys;
-	}
-	
-	public static void reFill(List<Character> ca, String str) {
-		ca.clear();
-		for(int i = 0; i < str.length(); i++) {
-			ca.add(str.charAt(i));
-		}
-	}
-	
-	public static String customEncrypt(List<List<Character>> keys, String inputStr) {
-		StringBuffer builder = new StringBuffer();
-		int keyIndex = 0;
-		for(int i = 0; i < inputStr.length(); i++) {
-			if(i == inputStr.length() - 1) {
-				builder.append(inputStr.charAt(0));
-				keyIndex = Integer.parseInt(String.valueOf(inputStr.charAt(0)));
-				builder.append(keys.get(keyIndex).get(Integer.parseInt(String.valueOf(inputStr.charAt(i)))));
-			} else {
-				builder.append(inputStr.charAt(i + 1));
-				keyIndex = Integer.parseInt(String.valueOf(inputStr.charAt(i + 1)));
-				builder.append(keys.get(keyIndex).get(Integer.parseInt(String.valueOf(inputStr.charAt(i)))));
+		File[] files = mainFolder.listFiles();
+		List<String> imagePathList = new ArrayList<String>();
+		String tmpSrc = null;
+		for(File f : files) {
+			if(f.isFile()) {
+				tmpSrc = getTargetImagePath(f.getName());
+				if(!StringUtils.isBlank(tmpSrc)) {
+					tmpSrc = tmpSrc.substring(2, tmpSrc.length());
+					imagePathList.add(mainFloderPath + tmpSrc);
+					System.out.println(mainFloderPath + tmpSrc);
+				}
 			}
 		}
 		
-		for(int i = 0; i < builder.length(); i = i + 2) {
-			builder.replace(i, i+1, keys.get(0).get(Integer.parseInt(String.valueOf(builder.charAt(i)))).toString());
+		File tmpFile = null;
+		File tmpResultFile = null;
+		for(String sf : imagePathList) {
+			tmpFile = new File(sf);
+			tmpResultFile = new File(mainFloderPath + tmpFile.getName());
+			FileUtils.copyFile(tmpFile, tmpResultFile);
 		}
 		
-		return builder.toString();
+//		System.out.println(imagePathList);
+		
+		
 	}
 	
-	public static String customDecrypt(List<List<Character>> keys, String inputStr) {
-		if(keys == null || keys.size() < 1 || StringUtils.isBlank(inputStr)) {
-			return null;
+	public static String getTargetImagePath(String fileName) {
+		Document doc = null;
+		String htmlStr = io.getStringFromFile(mainFloderPath + fileName);
+//		doc = Jsoup.connect("https://500px.com/photo/266323287/katarina-s-ass-by-nikita-shvedov").get();
+		doc = Jsoup.parse(htmlStr); 
+		Elements eleClazzPhoto = doc.getElementsByClass("photo");
+		String src = null;
+		for(Element ele : eleClazzPhoto) {
+			if(!StringUtils.isBlank(ele.attr("src"))) {
+				src = ele.attr("src");
+			}
 		}
-		StringBuffer builder = new StringBuffer(inputStr);
-		int keyIndex = 0;
-		for(int i = 0; i < builder.length(); i = i + 2) {
-			builder.replace(i, i+1, String.valueOf(keys.get(0).indexOf((builder.charAt(i)))));
-		}
-		
-		StringBuffer resultBuilder = new StringBuffer();
-		for(int i = 0; i < builder.length(); i = i + 2) {
-			keyIndex = Integer.parseInt(String.valueOf(builder.charAt(i)));
-			resultBuilder.append(keys.get(keyIndex).indexOf(builder.charAt(i + 1)));
-		}
-		
-		return resultBuilder.toString();
+		return src;
 	}
-
+//	D:\auxiliary\tmp\test\Dawn at Sasamat Lake. 作者 Salvador Boissett - 照片 130195631 _ 500px_files
 }
