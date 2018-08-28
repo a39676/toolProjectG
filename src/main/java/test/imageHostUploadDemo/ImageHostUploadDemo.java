@@ -1,4 +1,4 @@
-package test;
+package test.imageHostUploadDemo;
 
 import java.io.File;
 import java.io.InputStream;
