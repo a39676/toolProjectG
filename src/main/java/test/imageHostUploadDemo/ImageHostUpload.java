@@ -72,12 +72,6 @@ public class ImageHostUpload {
 		
 	}
 	
-	private static String buildInsertor(JSONObject jsonInput) {
-		
-		
-		return null;
-	}
-	
 	public static void main(String[] args) throws MalformedURLException, IOException  {
 		File targetFolder = new File(targetFloderPath);
 		File[] files = targetFolder.listFiles();
@@ -94,6 +88,7 @@ public class ImageHostUpload {
 		JSONObject tmpJson = null;
 		for(String r : resultList) {
 			tmpJson = JSONObject.fromObject(r);
+			System.out.println(tmpJson);
 		}
 	}
 
