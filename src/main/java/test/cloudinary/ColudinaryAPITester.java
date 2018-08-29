@@ -21,7 +21,7 @@ public class ColudinaryAPITester {
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 				  "cloud_name", "dy20bdekn",
 				  "api_key", "915927123645857",
-				  "api_secret", "k8483Du7gcUp49UrKKnm9RgXsiY"));
+				  "api_secret", "k8483Du7gcUp49UrKKnm9RgXsiYf"));
 		
 		File targetFolder = new File(targetFloderPath);
 		File[] files = targetFolder.listFiles();
