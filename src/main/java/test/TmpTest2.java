@@ -20,13 +20,16 @@ public class TmpTest2 {
 //	尚不可删除
 //	
 	private static FileUtilCustom io = new FileUtilCustom();
-	private static String mainFloderPath = "d:/auxiliary/tmp/test/";
+	private static String subFolderName = "pet";
+	private static String mainFloderPath = "d:/auxiliary/tmp/";
+	private static String sourceFolderPath = mainFloderPath + subFolderName + "/";
+	private static String resultFolderPath = mainFloderPath + "imageResult/" + subFolderName + "/";
 
 	public static void main(String[] args) throws IOException {
 		
-		File mainFolder = new File(mainFloderPath);
+		File sourceFolder = new File(sourceFolderPath);
 		
-		File[] files = mainFolder.listFiles();
+		File[] files = sourceFolder.listFiles();
 		List<String> imagePathList = new ArrayList<String>();
 		String tmpSrc = null;
 		for(File f : files) {
@@ -34,8 +37,8 @@ public class TmpTest2 {
 				tmpSrc = getTargetImagePath(f.getName());
 				if(!StringUtils.isBlank(tmpSrc)) {
 					tmpSrc = tmpSrc.substring(2, tmpSrc.length());
-					imagePathList.add(mainFloderPath + tmpSrc);
-					System.out.println(mainFloderPath + tmpSrc);
+					imagePathList.add(sourceFolderPath + tmpSrc);
+					System.out.println(sourceFolderPath + tmpSrc);
 				}
 			}
 		}
@@ -44,18 +47,20 @@ public class TmpTest2 {
 		File tmpResultFile = null;
 		for(String sf : imagePathList) {
 			tmpFile = new File(sf);
-			tmpResultFile = new File(mainFloderPath + tmpFile.getName());
+			tmpResultFile = new File(resultFolderPath + tmpFile.getName());
+			if(!tmpResultFile.getParentFile().exists()) {
+				tmpFile = tmpResultFile.getParentFile();
+				tmpFile.mkdirs();
+				tmpFile = new File(sf);
+			}
 			FileUtils.copyFile(tmpFile, tmpResultFile);
 		}
-		
-//		System.out.println(imagePathList);
-		
 		
 	}
 	
 	public static String getTargetImagePath(String fileName) {
 		Document doc = null;
-		String htmlStr = io.getStringFromFile(mainFloderPath + fileName);
+		String htmlStr = io.getStringFromFile(sourceFolderPath + fileName);
 //		doc = Jsoup.connect("https://500px.com/photo/266323287/katarina-s-ass-by-nikita-shvedov").get();
 		doc = Jsoup.parse(htmlStr); 
 		Elements eleClazzPhoto = doc.getElementsByClass("photo");
@@ -67,5 +72,4 @@ public class TmpTest2 {
 		}
 		return src;
 	}
-//	D:\auxiliary\tmp\test\Dawn at Sasamat Lake. 作者 Salvador Boissett - 照片 130195631 _ 500px_files
 }

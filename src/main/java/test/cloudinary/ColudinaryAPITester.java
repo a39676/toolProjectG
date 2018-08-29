@@ -8,12 +8,13 @@ import java.util.List;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import ioHandle.FileUtilCustom;
 import net.sf.json.JSONObject;
 
 public class ColudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.c10;
-	private static String targetFloderPath = "D:\\imageCache\\20180828\\" + ct.getChannelTypeName();
+	private static ChannelType ct = ChannelType.pet;
+	private static String targetFloderPath = "D:\\imageCache\\20180829\\" + ct.getChannelTypeName();
 	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
@@ -35,14 +36,20 @@ public class ColudinaryAPITester {
 			resultList.add(tmpResult);
 			System.out.println(tmpResult.getString("original_filename") + " uploaded" + "(" + i + "/" + files.length + ")");
 		}
-		System.out.println("insert into image_cloudinary_local_record(image_url, image_name, cloud_public_id, image_tag) values");
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("insert into image_cloudinary_local_record(image_url, image_name, cloud_public_id, image_tag) values");
+		
 		for(JSONObject j : resultList) {
-			System.out.println("('" + j.getString("secure_url") + "','" + j.getString("original_filename") + "','" + j.getString("public_id") + "'," + imageTag + "),");
+			sb.append("('" + j.getString("secure_url") + "','" + j.getString("original_filename") + "','" + j.getString("public_id") + "'," + imageTag + "),");
 		}
 		
 		for(JSONObject j : resultList) {
-			System.out.println(j.getString("secure_url"));
+			sb.append(j.getString("secure_url"));
 		}
+		FileUtilCustom io = new FileUtilCustom();
+		io.byteToFile(sb.toString().getBytes(), targetFloderPath + "/" + ct.getChannelTypeName() + ".txt");
+		System.out.println(sb.toString());
 	}
 
 }
