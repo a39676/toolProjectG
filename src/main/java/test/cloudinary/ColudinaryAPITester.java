@@ -13,8 +13,8 @@ import net.sf.json.JSONObject;
 
 public class ColudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.pet;
-	private static String targetFloderPath = "D:\\imageCache\\20180829\\" + ct.getChannelTypeName();
+	private static ChannelType ct = ChannelType.c1;
+	private static String targetFloderPath = "D:\\imageCache\\20180831\\" + ct.getChannelTypeName();
 	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
@@ -41,11 +41,11 @@ public class ColudinaryAPITester {
 		sb.append("insert into image_cloudinary_local_record(image_url, image_name, cloud_public_id, image_tag) values");
 		
 		for(JSONObject j : resultList) {
-			sb.append("('" + j.getString("secure_url") + "','" + j.getString("original_filename") + "','" + j.getString("public_id") + "'," + imageTag + "),");
+			sb.append("('" + j.getString("secure_url") + "','" + j.getString("original_filename") + "','" + j.getString("public_id") + "'," + imageTag + ")," + "\n");
 		}
 		
 		for(JSONObject j : resultList) {
-			sb.append(j.getString("secure_url"));
+			sb.append(j.getString("secure_url") + "\n");
 		}
 		FileUtilCustom io = new FileUtilCustom();
 		io.byteToFile(sb.toString().getBytes(), targetFloderPath + "/" + ct.getChannelTypeName() + ".txt");
