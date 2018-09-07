@@ -11,10 +11,10 @@ import com.cloudinary.utils.ObjectUtils;
 import ioHandle.FileUtilCustom;
 import net.sf.json.JSONObject;
 
-public class ColudinaryAPITester {
+public class CloudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.c1;
-	private static String targetFloderPath = "D:\\imageCache\\20180831\\" + ct.getChannelTypeName();
+	private static ChannelType ct = ChannelType.c9;
+	private static String targetFloderPath = "D:\\imageCache\\20180904\\" + ct.getChannelTypeName();
 	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
