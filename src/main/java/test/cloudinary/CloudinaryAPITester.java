@@ -13,8 +13,8 @@ import net.sf.json.JSONObject;
 
 public class CloudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.c9;
-	private static String targetFloderPath = "D:\\imageCache\\20180904\\" + ct.getChannelTypeName();
+	private static ChannelType ct = ChannelType.c1;
+	private static String targetFloderPath = "D:\\imageCache\\20180907\\" + ct.getChannelTypeName();
 	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
@@ -34,7 +34,8 @@ public class CloudinaryAPITester {
 			f = files[i];
 			tmpResult = JSONObject.fromObject(cloudinary.uploader().upload(f, ObjectUtils.emptyMap()));
 			resultList.add(tmpResult);
-			System.out.println(tmpResult.getString("original_filename") + " uploaded" + "(" + i + "/" + files.length + ")");
+			System.out.println(tmpResult.getString("original_filename") + " uploaded" + "(" + i + "/" + files.length + ")\n" 
+			+ "('" + tmpResult.getString("secure_url") + "','" + tmpResult.getString("original_filename") + "','" + tmpResult.getString("public_id") + "'," + imageTag + "),");
 		}
 		
 		StringBuffer sb = new StringBuffer();
