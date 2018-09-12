@@ -1,6 +1,5 @@
 package utils.sql_utils;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -11,8 +10,7 @@ public class ConnectTest {
 	public static void main(String[] args) {
 		
 		Connection connect = null;
-		String file = "d:" + File.separator + "auxiliary" + File.separator + "Item" + File.separator +
-				"MySqlTestDB01.properties";
+		String file = "D:\\wp01\\ssms\\src\\main\\resources\\properties\\database\\mySqlFinancer.properties";
 		
 		try {
 			connect = MySQLDBUtility.getConnection(file);
