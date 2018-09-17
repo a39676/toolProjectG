@@ -2,7 +2,9 @@ package test.cloudinary;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.cloudinary.Cloudinary;
@@ -13,11 +15,14 @@ import net.sf.json.JSONObject;
 
 public class CloudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.c1;
-	private static String targetFloderPath = "D:\\imageCache\\20180907\\" + ct.getChannelTypeName();
-	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
+		ChannelType ct = ChannelType.c9;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String dateStr = sdf.format(new Date());
+		String targetFloderPath = "g:/imageCache/" + dateStr + "/" + ct.getChannelTypeName();
+		int imageTag = ct.getChannelTypeCode();
+
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 				  "cloud_name", "dy20bdekn",
 				  "api_key", "915927123645857",
