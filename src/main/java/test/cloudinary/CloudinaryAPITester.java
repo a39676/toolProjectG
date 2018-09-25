@@ -13,8 +13,8 @@ import net.sf.json.JSONObject;
 
 public class CloudinaryAPITester {
 	
-	private static ChannelType ct = ChannelType.c1;
-	private static String targetFloderPath = "D:\\imageCache\\20180907\\" + ct.getChannelTypeName();
+	private static ChannelType ct = ChannelType.pet;
+	private static String targetFloderPath = "e:\\imageCache\\20180913\\" + ct.getChannelTypeName();
 	private static int imageTag = ct.getChannelTypeCode();
 
 	public static void main(String[] args) throws IOException {
