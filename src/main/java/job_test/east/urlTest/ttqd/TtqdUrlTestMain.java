@@ -1,7 +1,6 @@
 package job_test.east.urlTest.ttqd;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.List;
 
 import job_test.east.EastHttpTool;
@@ -11,16 +10,16 @@ import net.sf.json.JSONObject;
 
 public class TtqdUrlTestMain {
 	
-	private static TtqdAuxiliary eta = new TtqdAuxiliary();
-	private static EastHttpTool eHttpTool = new EastHttpTool();
+	public static TtqdAuxiliary eta = new TtqdAuxiliary();
+	public static EastHttpTool eHttpTool = new EastHttpTool();
 	
-	private boolean sendLoginSms() {
+	public boolean sendLoginSms() {
 		UrlTestDomain et = eta.getTestUrl(TtqdUrlTestConstant.sendLoginSms);
 		String result = sendPost(et);
 		return eta.isStatus0(result);
 	}
 	
-	private boolean userLogin() throws UnsupportedEncodingException {
+	public boolean userLogin() throws UnsupportedEncodingException {
 		if (!sendLoginSms()) {
 			return false;
 		}
@@ -34,19 +33,19 @@ public class TtqdUrlTestMain {
 		return eta.isStatus0(result);
 	}
 
-	private String getIndexAdTagList() {
+	public String getIndexAdTagList() {
 		UrlTestDomain et = eta.getTestUrl(TtqdUrlTestConstant.getIndexAdTagList);
 		insertUserId(et);
 		return sendPost(et);
 	}
 	
-	private String getDetailInfo(Long productId) {
+	public String getDetailInfo(Long productId) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.getDetailInfo);
 		insertKeyValue(ed, "productId", productId.toString());
 		return sendPost(ed);
 	}
 	
-	private String getApplyUrl(Long productId) {
+	public String getApplyUrl(Long productId) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.getApplyUrl);
 		insertUserId(ed);
 		insertKeyValue(ed, "productId", productId.toString());
@@ -59,7 +58,7 @@ public class TtqdUrlTestMain {
 	 * @param type 1:收藏, 2:取消收藏
 	 * @return
 	 */
-	private String collect(Long productId, Integer type) {
+	public String collect(Long productId, Integer type) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.collect);
 		insertUserId(ed);
 		insertKeyValue(ed, "productId", productId.toString());
@@ -67,12 +66,12 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String getStartupAd() {
+	public String getStartupAd() {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.getStartupAd);
 		return sendGet(ed);
 	}
 	
-	private String uploadADPicture(byte[] pictureBase64) {
+	public String uploadADPicture(byte[] pictureBase64) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.uploadPayoutPicture);
 //		insertUserId(ed);
 		ed.insertKeyValue("image", new String(pictureBase64))
@@ -82,7 +81,7 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String updateShowDC(boolean flag) {
+	public String updateShowDC(boolean flag) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.updateShowDC);
 		if(flag) {
 			ed.insertKeyValue("showDC", "true");
@@ -93,13 +92,13 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String findInformationMainTagOrderByWeights() {
+	public String findInformationMainTagOrderByWeights() {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationMainTagOrderByWeights);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String findInformationSubTagByInformationMainTagIds(List<String> searchIds, String isOnlie) {
+	public String findInformationSubTagByInformationMainTagIds(List<String> searchIds, String isOnlie) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationSubTagByInformationMainTagIds);
 		ed.insertKeyValue("pageNo", "1")
 		.insertKeyValue("pageSize", "10")
@@ -109,7 +108,7 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String findInformationVOMapByMainTagId(Integer mainTagId, Integer pageNo, Integer pageSize) {
+	public String findInformationVOMapByMainTagId(Integer mainTagId, Integer pageNo, Integer pageSize) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationVOMapByMainTagId);
 		ed.insertKeyValue("pageNo", pageNo.toString())
 		.insertKeyValue("pageSize", pageSize.toString())
@@ -118,37 +117,37 @@ public class TtqdUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String findInformationHot() {
+	public String findInformationHot() {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationHot);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String findInformationVOMap(Long id) {
+	public String findInformationVOMap(Long id) {
 		UrlTestDomain ed = eta.getTestUrl(TtqdUrlTestConstant.findInformationVOMap);
 		ed.insertKeyValue("id", id.toString());
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private void insertUserId(UrlTestDomain ed) {
+	public void insertUserId(UrlTestDomain ed) {
 		JSONObject json = JSONObject.fromObject(ed.getParamData());
 		json.put("userId", eta.getId());
 		json.put("token", eta.getToken());
 		ed.setParamData(json.toString());
 	}
 	
-	private void insertKeyValue(UrlTestDomain ed, String key, String value) {
+	public void insertKeyValue(UrlTestDomain ed, String key, String value) {
 		JSONObject json = JSONObject.fromObject(ed.getParamData());
 		json.put(key, value);
 		ed.setParamData(json.toString());
 	}
 	
-	private String sendPost(UrlTestDomain ed) {
+	public String sendPost(UrlTestDomain ed) {
 		return eHttpTool.sendPost(ed.getUrl(), ed.getParamData());
 	}
 	
-	private String sendGet(UrlTestDomain ed) {
+	public String sendGet(UrlTestDomain ed) {
 		return eHttpTool.sendGet(ed.getUrl());
 	}
 	

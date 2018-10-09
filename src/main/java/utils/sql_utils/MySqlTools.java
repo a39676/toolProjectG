@@ -529,9 +529,9 @@ public class MySqlTools {
 			String getTableInfo = "show full columns from ";
 			List<String> colName = new ArrayList<String>();
 			List<String> colType = new ArrayList<String>();
-			List<String> colNullFlag = new ArrayList<String>();
-			List<String> colKey = new ArrayList<String>();
-			List<String> colDeafultValue = new ArrayList<String>();
+//			List<String> colNullFlag = new ArrayList<String>();
+//			List<String> colKey = new ArrayList<String>();
+//			List<String> colDeafultValue = new ArrayList<String>();
 
 			ResultSet rs01 = stmtSingle.executeQuery(getTableInfo + listTableNames.get(0));
 			ResultSetMetaData rsmd01 = rs01.getMetaData();
@@ -567,12 +567,12 @@ public class MySqlTools {
 
 		List<String> columnNameList = allList.get(0);
 		List<String> columnTypeList = tool01.modifyListToMySqlDataType(allList.get(1));
-		List<String> collationNameList = allList.get(2);
-		List<String> isNullableList = allList.get(3);
-		List<String> columnKeyList = allList.get(4);
+//		List<String> collationNameList = allList.get(2);
+//		List<String> isNullableList = allList.get(3);
+//		List<String> columnKeyList = allList.get(4);
 		List<String> columnDefaultList = allList.get(5);
-		List<String> extraList = allList.get(6);
-		List<String> privilegesList = allList.get(7);
+//		List<String> extraList = allList.get(6);
+//		List<String> privilegesList = allList.get(7);
 		List<String> columnCommentList = allList.get(8);
 		String tableName = allList.get(10).get(0);
 		String tableComment = allList.get(9).get(0);

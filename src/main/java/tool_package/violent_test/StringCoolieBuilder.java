@@ -19,7 +19,7 @@ public class StringCoolieBuilder {
 	private int stepGroup = 3;
 	
 	private ArrayList<Character> characterDictionary;
-	private ArrayList<String> tmpStringDictionary;
+//	private ArrayList<String> tmpStringDictionary;
 	
 	private List<Integer> indexList = new ArrayList<Integer>(); 
 	private List<String> tmpResultList = new ArrayList<String>();

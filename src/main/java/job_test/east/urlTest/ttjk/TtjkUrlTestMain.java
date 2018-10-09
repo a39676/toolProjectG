@@ -12,10 +12,10 @@ import net.sf.json.JSONObject;
 
 public class TtjkUrlTestMain {
 
-	private static TtjkAuxiliary eta = new TtjkAuxiliary();
-	private static EastHttpTool eHttpTool = new EastHttpTool();
+	public static TtjkAuxiliary eta = new TtjkAuxiliary();
+	public static EastHttpTool eHttpTool = new EastHttpTool();
 
-	private boolean userLogin() throws UnsupportedEncodingException {
+	public boolean userLogin() throws UnsupportedEncodingException {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.login);
 		String result = sendPost(ed);
 		eta.saveIdToken(result);
@@ -23,28 +23,28 @@ public class TtjkUrlTestMain {
 		return eta.isStatus0(result);
 	}
 
-	private void insertOperatorId(UrlTestDomain ed) {
+	public void insertOperatorId(UrlTestDomain ed) {
 		JSONObject json = JSONObject.fromObject(ed.getParamData());
 		json.put("operatorId", eta.getId());
 		json.put("token", eta.getToken());
 		ed.setParamData(json.toString());
 	}
 
-//	private void insertKeyValue(UrlTestDomain ed, String key, String value) {
+//	public void insertKeyValue(UrlTestDomain ed, String key, String value) {
 //		JSONObject json = JSONObject.fromObject(ed.getParamData());
 //		json.put(key, value);
 //		ed.setParamData(json.toString());
 //	}
 
-	private String sendPost(UrlTestDomain ed) {
+	public String sendPost(UrlTestDomain ed) {
 		return eHttpTool.sendPost(ed.getUrl(), ed.getParamData());
 	}
 
-	private String sendGet(UrlTestDomain ed) {
+	public String sendGet(UrlTestDomain ed) {
 		return eHttpTool.sendGet(ed.getUrl());
 	}
 
-	private String addAD(Integer adIdx, String image, Integer srcType, String src, Integer adType, boolean online) {
+	public String addAD(Integer adIdx, String image, Integer srcType, String src, Integer adType, boolean online) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.addAD);
 		insertOperatorId(ed);
 		ed.insertKeyValue("adIdx", adIdx.toString())
@@ -57,13 +57,13 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String test() {
+	public String test() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.test);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 
-	private String getADList(Integer pageNo, Integer pageSize, Integer adType) {
+	public String getADList(Integer pageNo, Integer pageSize, Integer adType) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getADList);
 		insertOperatorId(ed);
 		ed.insertKeyValue("pageNo", pageNo.toString())
@@ -73,7 +73,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String uploadADPicture(byte[] pictureBase64) {
+	public String uploadADPicture(byte[] pictureBase64) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.uploadADPicture);
 		insertOperatorId(ed);
 		ed.insertKeyValue("picture", new String(pictureBase64));
@@ -81,7 +81,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String getADInfo(Integer adId, Integer adType) {
+	public String getADInfo(Integer adId, Integer adType) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getADInfo);
 		insertOperatorId(ed);
 		ed.insertKeyValue("id", adId.toString())
@@ -90,7 +90,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String editAD(Integer adId, Integer adIdx, String image, Integer srcType, String src, Integer adType,
+	public String editAD(Integer adId, Integer adIdx, String image, Integer srcType, String src, Integer adType,
 			Boolean online) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editAD);
 		insertOperatorId(ed);
@@ -105,7 +105,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String deleteAD(Integer adId, Integer adType) {
+	public String deleteAD(Integer adId, Integer adType) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.deleteAD);
 		insertOperatorId(ed);
 		ed.insertKeyValue("id", adId.toString())
@@ -114,7 +114,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String addRedPacket() {
+	public String addRedPacket() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.addRedPacket);
 		insertOperatorId(ed);
 		ed.insertKeyValue("redPacketInfo",
@@ -131,7 +131,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String editRedPacket() {
+	public String editRedPacket() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editRedPacket);
 		insertOperatorId(ed);
 		ed.insertKeyValue("redPacketInfo",
@@ -148,7 +148,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String getRedPacketDetail(Long redPacketId) {
+	public String getRedPacketDetail(Long redPacketId) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getRedPacketDetail);
 		insertOperatorId(ed);
 		ed.insertKeyValue("redPacketId", redPacketId.toString());
@@ -156,14 +156,14 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String redPacketList() {
+	public String redPacketList() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.redPacketList);
 		insertOperatorId(ed);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 
-	private String sendRedPacket() {
+	public String sendRedPacket() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.sendRedPacket);
 		insertOperatorId(ed);
 		ed.insertKeyValue("selectType", "1")
@@ -178,7 +178,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 
-	private String sendRedPacketRecordList() {
+	public String sendRedPacketRecordList() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.sendRedPacketRecordList);
 		insertOperatorId(ed);
 		ed.insertKeyValue("pageNo", "1")
@@ -189,14 +189,14 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String getAdvancedManageList() {
+	public String getAdvancedManageList() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getAdvancedManageList);
 		insertOperatorId(ed);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String editAdvancedSwitch() {
+	public String editAdvancedSwitch() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editAdvancedSwitch);
 		insertOperatorId(ed);
 		ed.insertKeyValue("infos", "[{\"authType\":\"1\",\"authName\":\"芝麻信用\",\"authStatus\":\"true\",\"authLimit\":\"0\",\"passRate\":\"0\"},{\"authType\":\"2\",\"authName\":\"运营商\",\"authStatus\":\"true\",\"authLimit\":\"30\",\"passRate\":\"30\"}]");
@@ -205,7 +205,7 @@ public class TtjkUrlTestMain {
 	}
 	
 	
-	private String editAdvancedLimit() {
+	public String editAdvancedLimit() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editAdvancedLimit);
 		insertOperatorId(ed);
 		ed.insertKeyValue("infos", "[{\"authType\":\"1\",\"authName\":\"芝麻信用\",\"authStatus\":\"true\",\"authLimit\":\"10\",\"passRate\":\"3\"},{\"authType\":\"2\",\"authName\":\"运营商\",\"authStatus\":\"true\",\"authLimit\":\"30\",\"passRate\":\"30\"}]");
@@ -214,7 +214,7 @@ public class TtjkUrlTestMain {
 	}
 	
 	
-	private String editAdvancedForceInfo() {
+	public String editAdvancedForceInfo() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editAdvancedForceInfo);
 		insertOperatorId(ed);
 		ed.insertKeyValue("forceInfo", "{\"flag\":\"true\", \"info\":{\"authType\":\"1\",\"authName\":\"芝麻信用\",\"authStatus\":\"true\",\"authLimit\":\"0\",\"passRate\":\"0\"}}");
@@ -223,7 +223,7 @@ public class TtjkUrlTestMain {
 	}
 	
 	
-	private String editAdvancedMultiInfo() {
+	public String editAdvancedMultiInfo() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editAdvancedMultiInfo);
 		insertOperatorId(ed);
 		ed.insertKeyValue("multiInfo", "{\r\n" + 
@@ -237,14 +237,14 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String getProductList() {
+	public String getProductList() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getProductList);
 		insertOperatorId(ed);
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String createProduct() {
+	public String createProduct() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.createProduct);
 		insertOperatorId(ed);
 		CashProductVO vo = new CashProductVO();
@@ -276,12 +276,12 @@ public class TtjkUrlTestMain {
 		vo.setProductServiceObject(2);
 		vo.setLoanCountMin(1);
 		vo.setLoanCountMax(10);
-		ed.insertKeyValue("cashProduct", new JSONObject().fromObject(vo).toString());
+		ed.insertKeyValue("cashProduct", JSONObject.fromObject(vo).toString());
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String getProductDetails() {
+	public String getProductDetails() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getProductDetails);
 		insertOperatorId(ed);
 		ed.insertKeyValue("id", "2");
@@ -289,7 +289,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String updateProduct() {
+	public String updateProduct() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.updateProduct);
 		insertOperatorId(ed);
 		CashProductVO vo = new CashProductVO();
@@ -321,12 +321,12 @@ public class TtjkUrlTestMain {
 		vo.setProductServiceObject(2);
 		vo.setLoanCountMin(1);
 		vo.setLoanCountMax(10);
-		ed.insertKeyValue("cashProduct", new JSONObject().fromObject(vo).toString()).insertKeyValue("id", "2");
+		ed.insertKeyValue("cashProduct", JSONObject.fromObject(vo).toString()).insertKeyValue("id", "2");
 		System.out.println(ed.getUrl());
 		return sendPost(ed);
 	}
 	
-	private String deleteProduct() {
+	public String deleteProduct() {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.deleteProduct);
 		insertOperatorId(ed);
 		ed.insertKeyValue("id", "1");
@@ -334,7 +334,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String addSystemNotice(SystemNoticeInfo info) {
+	public String addSystemNotice(SystemNoticeInfo info) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.addSystemNotice);
 		insertOperatorId(ed);
 		ed.insertKeyValue("info", JSONObject.fromObject(info).toString());
@@ -342,7 +342,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String getSystemNoticeList(Integer pageNo, Integer pageSize) {
+	public String getSystemNoticeList(Integer pageNo, Integer pageSize) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.getSystemNoticeList);
 		insertOperatorId(ed);
 		ed.insertKeyValue("pageNo", pageNo.toString())
@@ -351,7 +351,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String systemNoticeDetail(Long noticeId) {
+	public String systemNoticeDetail(Long noticeId) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.systemNoticeDetail);
 		insertOperatorId(ed);
 		ed.insertKeyValue("noticeId", noticeId.toString());
@@ -360,7 +360,7 @@ public class TtjkUrlTestMain {
 	}
 	
 	
-	private String editSystemNotice(SystemNoticeInfo notice) {
+	public String editSystemNotice(SystemNoticeInfo notice) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.editSystemNotice);
 		insertOperatorId(ed);
 		ed.insertKeyValue("info", JSONObject.fromObject(notice).toString());
@@ -368,7 +368,7 @@ public class TtjkUrlTestMain {
 		return sendPost(ed);
 	}
 	
-	private String deleteSystemNotice(Long noticeId) {
+	public String deleteSystemNotice(Long noticeId) {
 		UrlTestDomain ed = eta.getTestUrl(TtjkUrlTestConstant.deleteSystemNotice);
 		insertOperatorId(ed);
 		ed.insertKeyValue("noticeId", noticeId.toString());

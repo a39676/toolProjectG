@@ -151,6 +151,7 @@ class ChameleonZip extends Chameleon {
 	
 	ZipFile zipFile = null;
 	
+	@SuppressWarnings("unchecked")
 	public boolean matcher(String str) {
 		String tmpPath = "d:/auxiliary/tmp/";
 		File tmpFile = null;

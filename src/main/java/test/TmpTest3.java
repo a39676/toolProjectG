@@ -3,14 +3,13 @@ package test;
 import java.io.IOException;
 import java.util.UUID;
 
-import net.sf.json.JSONObject;
-
 public class TmpTest3 {
 	
 	public static void main(String[] args) throws IOException {
 		
 		TestA ab = new TestB();
 		ab = new TestB();
+		System.out.println(ab);
 		
 		System.out.println(UUID.randomUUID().toString().replaceAll("-", "").replaceAll("a", "["));
 		

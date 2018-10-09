@@ -1,7 +1,5 @@
 package job_test.east.urlTest.xkMall.common.entity.type.app.product;
 
-import net.sf.json.JSONObject;
-
 /**
  * 产品额度类型
  */

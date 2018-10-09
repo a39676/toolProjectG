@@ -1,7 +1,6 @@
 package utils.sql_utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,22 +21,22 @@ public class MySqlComponents {
 	
 	public static Map<Integer, Integer> indexRecord = new HashMap<Integer, Integer>();
 
-	public static final HashMap<Integer, String> mateDateMatchRefence = new HashMap<Integer, String>() {
-		{
-			// key as somewhere change into , value as regex to match
-			put(0, "字段名称");
-			put(1, "数据类型");
-			put(2, "");
-			put(3, "");
-			put(4, "是否主键");
-			put(5, "默认(值)?");
-			put(6, "");
-			put(7, "");
-			put(8, "描述");
-			put(9, "(\\d\\.\\d{1,2}\\.\\d{1,2}\\.)(?:\\s*)(\\S{1,40})");
-			put(10, "表名：(?:\\S{1,40})");
-		}
-	};
+	public static final HashMap<Integer, String> mateDateMatchRefence;
+	
+	static {
+		mateDateMatchRefence = new HashMap<Integer, String>();
+		mateDateMatchRefence.put(0, "字段名称");
+		mateDateMatchRefence.put(1, "数据类型");
+		mateDateMatchRefence.put(2, "");
+		mateDateMatchRefence.put(3, "");
+		mateDateMatchRefence.put(4, "是否主键");
+		mateDateMatchRefence.put(5, "默认(值)?");
+		mateDateMatchRefence.put(6, "");
+		mateDateMatchRefence.put(7, "");
+		mateDateMatchRefence.put(8, "描述");
+		mateDateMatchRefence.put(9, "(\\d\\.\\d{1,2}\\.\\d{1,2}\\.)(?:\\s*)(\\S{1,40})");
+		mateDateMatchRefence.put(10, "表名：(?:\\S{1,40})");
+	}
 	
 	// 判断是否 metaData
 	public static void isMateData (String cellInfo) {
@@ -142,8 +141,8 @@ public class MySqlComponents {
 	}
 
 	// 清理容器
-	public static void cleanupInfoContainer(List<List<String>> list, Map map) {
-		for (List subList : list) {
+	public static void cleanupInfoContainer(List<List<String>> list, Map<?, ?> map) {
+		for (List<String> subList : list) {
 			subList.clear();
 		}
 		map.clear();
