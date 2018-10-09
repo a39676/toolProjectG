@@ -9,8 +9,31 @@ public class TmpTest3 {
 	
 	public static void main(String[] args) throws IOException {
 		
-		System.out.println(UUID.randomUUID().toString().replaceAll("-", ""));
+		TestA ab = new TestB();
+		ab = new TestB();
+		
 		
 	}
 
+}
+
+class TestA {
+	
+	static {
+		System.out.println("1");
+	}
+	
+	public TestA() {
+		System.out.println("2");
+	}
+}
+
+class TestB extends TestA {
+	static {
+		System.out.println("x");
+	}
+	
+	public TestB() {
+		System.out.println("y");
+	}
 }
