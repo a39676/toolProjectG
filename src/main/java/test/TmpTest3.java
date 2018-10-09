@@ -12,6 +12,7 @@ public class TmpTest3 {
 		TestA ab = new TestB();
 		ab = new TestB();
 		
+		System.out.println(UUID.randomUUID().toString().replaceAll("-", "").replaceAll("a", "["));
 		
 	}
 
