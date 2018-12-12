@@ -19,6 +19,11 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
+    // for office files
+    compile files('src/libs/poi-3.15.jar')
+    compile files('src/libs/poi-ooxml-3.15.jar')
+    compile files('src/libs/poi-ooxml-schemas-3.15.jar')
+    
     compile files('src/libs/animated-gif-lib-1.4.jar')
     compile files('src/libs/aspectjrt-1.7.2.jar')
     compile files('src/libs/aspectjweaver-1.8.9.jar')
@@ -78,9 +83,7 @@ dependencies {
     compile files('src/libs/mysql-connector-java-6.0.4.jar')
     compile files('src/libs/opencsv-4.0.jar')
     compile files('src/libs/org.json.simple-0.4.jar')
-    compile files('src/libs/poi-3.15.jar')
-    compile files('src/libs/poi-ooxml-3.15.jar')
-    compile files('src/libs/poi-ooxml-schemas-3.15.jar')
+
     compile files('src/libs/servlet-api-3.0-alpha-1.jar')
     compile files('src/libs/slf4j-api-1.7.21.jar')
     compile files('src/libs/slf4j-log4j12-1.7.21.jar')
