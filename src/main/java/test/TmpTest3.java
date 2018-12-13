@@ -12,6 +12,7 @@ public class TmpTest3 {
 		System.out.println(ab);
 		
 		System.out.println(UUID.randomUUID().toString().replaceAll("-", "").replaceAll("a", "["));
+		System.out.println(System.currentTimeMillis());
 		
 	}
 

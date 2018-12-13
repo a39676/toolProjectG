@@ -109,9 +109,11 @@ class ChameleonOffice2007 extends Chameleon {
 	
 	public boolean setDecryptor(String filePath)  {
 		try {
-			POIFSFileSystem poifsfs = new POIFSFileSystem(new File(filePath));
+			File file = new File(filePath);
+			POIFSFileSystem poifsfs = new POIFSFileSystem(file);
 			EncryptionInfo info = new EncryptionInfo(poifsfs);
 			officeDecryptor = Decryptor.getInstance(info);
+			System.out.println("set decryptor office2007");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,9 +137,15 @@ class ChameleonOffice97 extends Chameleon {
 	
 	public boolean setDecryptor(String filePath)  {
 		try {
-			NPOIFSFileSystem poifsfs = new NPOIFSFileSystem(new File(filePath));
-			EncryptionInfo info = new EncryptionInfo(poifsfs);
+			File file = new File(filePath);
+			if(!file.exists()) {
+				System.out.println("file not found");
+				return false;
+			}
+			NPOIFSFileSystem npoifsFileSystem = new NPOIFSFileSystem(file);
+			EncryptionInfo info = new EncryptionInfo(npoifsFileSystem);
 			officeDecryptor = Decryptor.getInstance(info);
+			System.out.println("set decryptor office97");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
