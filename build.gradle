@@ -11,6 +11,8 @@ repositories {
     flatDir {
         dirs 'src/libs/'
     }
+    google()
+    mavenCentral()
     jcenter()
 }
 
