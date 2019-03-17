@@ -10,6 +10,8 @@ public class LocalEnvironmentConstant {
 	public static String propertiesFile = "src/main/resources/properties/testSql.properties";
 	public static String memoryJoyPropertiesFile = "src/main/resources/properties/memoryJoy.properties";
 	public static String ssmPropertiesFile = "src/main/resources/properties/ssm.properties";
+	public static String woqu3 = "src/main/resources/properties/woqu3.properties";
+	public static String woquIntelligentDevice = "src/main/resources/properties/woquIntelligentDevice.properties";
 	
 	
 	// 表结构汇总excel

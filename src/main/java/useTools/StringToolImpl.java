@@ -30,7 +30,7 @@ public class StringToolImpl {
 		
 		for(String line : lines) {
 			if(isTargetLine(line)) {
-				System.out.println(st.camelToUnderLine(line));
+				System.out.println(st.underLineToCamel(line));
 				targetLineCount++;
 				if(tmpCount(line)) {
 					changeCount++;
@@ -48,7 +48,7 @@ public class StringToolImpl {
 		StringToolImpl t = new StringToolImpl();
 		String filePath;
 //		filePath = "D:\\wen-server\\git\\wen-server\\wen-common\\src\\main\\java\\com\\wen\\rongbao\\entity\\result\\FastMemberSplitBindCardResult.java";
-		filePath = "D:\\woqu\\grpc_lib\\src\\main\\proto\\finance\\ApplyPayment.proto";
+		filePath = "D:\\woqu\\defines\\src\\main\\java\\com\\wowqu\\defines\\notify\\message\\finance\\RejectPaymentMessage.java";
 		
 		t.conventLinesFromFile(filePath);
 	}

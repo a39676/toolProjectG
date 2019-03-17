@@ -287,11 +287,11 @@ public class SqlTool {
 	
 	public static void main(String[] args) throws Exception  {
 		SqlTool tool = new SqlTool();
-		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.memoryJoyPropertiesFile);
+		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquIntelligentDevice);
 //		IOtools iot = new IOtools();
 		
 //		 搜索数据库
-//		tool.getTableWithAim("approvemoney");
+		tool.getTableWithAim("out");
 		
 		// 索取数据
 //		String sql = iot.getStringFromFile("d:/auxiliary/tmp/tmpSql.txt");
@@ -300,7 +300,7 @@ public class SqlTool {
 		// 获取数据库概况
 //		tool.getTableInfo();
 		
-		tool.getTableCreatorSql(null);
+//		tool.getTableCreatorSql(null);
 		
 	}
 
