@@ -28,7 +28,7 @@ dependencies {
     
     // local jar
     // custom tool pack
-    compile files('src/libs/toolPacksG-0.0.3.1.jar')
+    compile files('src/libs/toolPacksG-0.0.4.3.jar')
 	// cloudinary    
     compile files('src/libs/cloudinary-http44-1.19.0.jar')
     compile files('src/libs/cloudinary-1.0.14.jar')
@@ -143,6 +143,9 @@ dependencies {
 	compile files('src/libs/jsoup-1.11.2.jar')
 	
 	compile group: 'redis.clients', name: 'jedis', version: '3.0.0'
+	
+	// baidu ocr
+	compile group: 'com.baidu.aip', name: 'java-sdk', version: '4.11.0'
 }
 
 
