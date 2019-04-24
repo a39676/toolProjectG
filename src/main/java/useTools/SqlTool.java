@@ -2,6 +2,7 @@ package useTools;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -240,10 +241,15 @@ public class SqlTool {
 		sqlTools.backupInfoToTxt(connect, outputPath);
 	}
 	
-	public void createBackSqlFromTxt(String sourceFilePath, String outputFilePath) {
+	public void createBackupSqlFromTxt(String sourceFilePath, String outputFilePath) {
 		File f = new File(sourceFilePath);
-		if(!f.exists() || !f.isFile()) {
-			return;
+		if(!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
 		}
 		
 		String tableName = f.getName().replaceAll("\\.txt", "");
@@ -282,7 +288,7 @@ public class SqlTool {
 	
 	public static void main(String[] args) throws Exception  {
 		SqlTool tool = new SqlTool();
-		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquDevNotification);
+		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquIntelligentDevice);
 //		IOtools iot = new IOtools();
 		
 //		 搜索数据库
@@ -309,13 +315,13 @@ public class SqlTool {
 //		}
 		
 		String mainFolderPath = "D:/auxiliary/tmp";
-		String tableName = "s_wechat_config";
+		String tableName = "t_house_energy_history";
 		String backSuffix = "Backup";
 		String fileNameSuffix = ".txt";
-//		String templateSql = "select * from " + tableName;
-//		tool.getResultToTxt(templateSql, tableName, true);
+		String templateSql = "select * from " + tableName;
+		tool.getResultToTxt(templateSql, tableName, true);
 		
-		tool.createBackSqlFromTxt(mainFolderPath + "/" + tableName + fileNameSuffix
+		tool.createBackupSqlFromTxt(mainFolderPath + "/" + tableName + fileNameSuffix
 				, mainFolderPath + "/" + tableName + backSuffix + fileNameSuffix);
 		
 	}
