@@ -146,6 +146,10 @@ dependencies {
 	
 	// baidu ocr
 	compile group: 'com.baidu.aip', name: 'java-sdk', version: '4.11.0'
+	
+	// web collector
+	compile group: 'cn.edu.hfut.dmic.webcollector', name: 'WebCollector', version: '2.71'
+
 }
 
 

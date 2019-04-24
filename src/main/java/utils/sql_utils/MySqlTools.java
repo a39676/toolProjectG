@@ -905,6 +905,17 @@ public class MySqlTools {
 	
 	public void backupInfoToTxt(Connection conn, String outputPath) {
 		List<String> tables = getTableNameListByShowTables(conn);
+		try {
+			for (String singleTableName : tables) {
+				backupInfoToTxt(conn, outputPath, singleTableName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void backupInfoToTxt(Connection conn, String outputPath, String tableName) {
 		String selectAllSql = "select * from ";
 		Statement selectAllStatement = null;
 		
@@ -914,12 +925,11 @@ public class MySqlTools {
 		try {
 			selectAllStatement = conn.prepareStatement(selectAllSql);
 
-			for (String singleTableName : tables) {
-				sb.setLength(0);
-				ResultSet rs = selectAllStatement.executeQuery(selectAllSql + singleTableName);
-				ResultSetMetaData rsmd = rs.getMetaData();
-				int columnCount = rsmd.getColumnCount();
-
+			sb.setLength(0);
+			ResultSet rs = selectAllStatement.executeQuery(selectAllSql + tableName);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
 //				增加列名
 //				for(int i = 1; i <= columnCount; i++) {
 //					sb.append(rsmd.getColumnName(i));
@@ -928,25 +938,45 @@ public class MySqlTools {
 //					}
 //				}
 //				sb.append("\n");
-				
-				while (rs.next()) {
-					for(int i = 1; i <= columnCount; i++) {
-						sb.append(String.valueOf(rs.getString(i)));
-						if(i < columnCount) {
-							sb.append("\t");
-						}
+			
+			while (rs.next()) {
+				for(int i = 1; i <= columnCount; i++) {
+					sb.append(String.valueOf(rs.getString(i)));
+					if(i < columnCount) {
+						sb.append("\t");
 					}
-					sb.append("\n");
 				}
-				ioTool.byteToFile(sb.toString().getBytes("utf8"), outputPath + singleTableName + ".txt");
-				System.out.println(singleTableName + ".txt created");
-				
+				sb.append("\n");
 			}
+			ioTool.byteToFile(sb.toString().getBytes("utf8"), outputPath + tableName + ".txt");
+			System.out.println(tableName + ".txt created");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private Long rowCount(Connection conn, String outputPath, String tableName) {
+		String rowCountSql = "select count(*) from ";
+		Statement rowCountStatement = null;
+		
+		Long rowCount = 0L;
+		try {
+			rowCountStatement = conn.prepareStatement(rowCountSql);
+
+			ResultSet rs = rowCountStatement.executeQuery(rowCountSql + tableName);
+			
+			while (rs.next()) {
+				rowCount = rs.getLong(0);
+			}
+			System.out.println(tableName + "row count: " + rowCount);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rowCount;
 	}
 }
 	

@@ -2,12 +2,11 @@ package useTools;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -162,7 +161,7 @@ public class SqlTool {
 	}
 	
 	public void keepAliveAndExecuteOrder() throws InterruptedException {
-		
+//		TODO
 		MySqlTools mySqlTool01 = new MySqlTools();
 		FileUtilCustom ioTool = new FileUtilCustom();
 		
@@ -241,57 +240,53 @@ public class SqlTool {
 		sqlTools.backupInfoToTxt(connect, outputPath);
 	}
 	
-	/** 2017-10-23 临时任务,帮数据分析人员导出数据*/
-	public void pullDateFromDatabase() throws UnsupportedEncodingException {
-		SqlTool tool = new SqlTool();
-		String sql = " select    cc.owner_uid,    cc.relation_name          from     certification_contacts as cc          inner join loan_record as loan   on cc.owner_uid = loan.uid  where uid= ? ";
+	public void createBackSqlFromTxt(String sourceFilePath, String outputFilePath) {
+		File f = new File(sourceFilePath);
+		if(!f.exists() || !f.isFile()) {
+			return;
+		}
 		
-		String inputIDFilePath = "d:/auxiliary/tmp/uids20171019.txt";
-		String recordIDFilePath = "d:/auxiliary/tmp/uidsWasGet.txt";
-		String outputFilePath = "d:/auxiliary/tmp/cc/";
-		int startIndex = 1;
-		int endIndex = 120000;
-		
+		String tableName = f.getName().replaceAll("\\.txt", "");
+		System.out.println(tableName);
 		FileUtilCustom io = new FileUtilCustom();
+		String oldStr = io.getStringFromFile(sourceFilePath);
 		
-		String inputUidString = io.getStringFromFile(inputIDFilePath);
-		String[] uidArr = inputUidString.split(",");
-		List<String> inputUidList = new ArrayList<String>();
-		for(String ele : uidArr) {
-			inputUidList.add(ele.replaceAll("[^\\d]", ""));
-		}
+		List<String> lines = Arrays.asList(oldStr.split("\n"));
 		
-		Set<String> recordUidList = new HashSet<String>();
-
+//		List<String> columnNameList = Arrays.asList(lines.get(0).split("\t"));
+		String columnNameStr = lines.get(0).replaceAll("\t", ",");
+		columnNameStr = columnNameStr.substring(4, columnNameStr.length() - 1);
+		System.out.println(columnNameStr);
 		
-		File outputFolder = new File(outputFilePath);
-		File[] files = outputFolder.listFiles();
-		for(File ele : files) {
-			recordUidList.add(ele.getName().replace(".txt", ""));
-		}
-		
-		StringBuffer tmpUidRecord = new StringBuffer();
-		for(int i = startIndex; i < endIndex && i < inputUidList.size(); i++) {
-			if(!recordUidList.contains(inputUidList.get(i))) {
-				tool.getResultToTxt(sql.replace("?", inputUidList.get(i)), "/cc/" + inputUidList.get(i), false);
-				tmpUidRecord.append(inputUidList.get(i) + ",\n");
-				recordUidList.add(inputUidList.get(i));
+		List<String> values = null;
+		StringBuffer sqlBuilder = new StringBuffer();
+		for(int lineIndex = 1; lineIndex < lines.size(); lineIndex++) {
+			sqlBuilder.append("insert into " + tableName + " (" + columnNameStr + " ) values"
+					+ "(");
+			values = Arrays.asList(lines.get(lineIndex).split("\t"));
+			for(int i = 1; i < values.size(); i++) {
+				if("null".equals(values.get(i))) {
+					sqlBuilder.append("null,");
+				} else {
+					sqlBuilder.append("'" + values.get(i) + "',");
+				}
 			}
-			if(i % 50 == 0 || i == endIndex - 1) {
-				io.byteToFileAppendAtEnd(tmpUidRecord.toString().getBytes("utf8"), recordIDFilePath);
-				tmpUidRecord.setLength(0);
-			}
-			System.out.println("run to: " + i);
+			sqlBuilder.setLength(sqlBuilder.length() - 1);
+			sqlBuilder.append(" ); \n");
+			System.out.println(sqlBuilder.toString());
+			io.byteToFileAppendAtEnd(sqlBuilder.toString().getBytes(StandardCharsets.UTF_8), outputFilePath);
+			sqlBuilder.setLength(0);
 		}
+		
 	}
 	
 	public static void main(String[] args) throws Exception  {
 		SqlTool tool = new SqlTool();
-		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquIntelligentDevice);
+		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquDevNotification);
 //		IOtools iot = new IOtools();
 		
 //		 搜索数据库
-		tool.getTableWithAim("out");
+//		tool.getTableWithAim("审核");
 		
 		// 索取数据
 //		String sql = iot.getStringFromFile("d:/auxiliary/tmp/tmpSql.txt");
@@ -301,6 +296,27 @@ public class SqlTool {
 //		tool.getTableInfo();
 		
 //		tool.getTableCreatorSql(null);
+		
+		// 拉取数据
+//		String templateSql = "select * from t_member where create_time < \'2018-01-01\' order by mem_id limit ";
+//		String tmpSql = null;
+//		String resultName = "member3";
+//		int step = 1000;
+//		for(int i = 4600; i < 60000; i += step) {
+//			tmpSql = templateSql + i + ", " + step;
+//			System.out.println(tmpSql);
+//			tool.getResultToTxt(tmpSql, resultName, true);
+//		}
+		
+		String mainFolderPath = "D:/auxiliary/tmp";
+		String tableName = "s_wechat_config";
+		String backSuffix = "Backup";
+		String fileNameSuffix = ".txt";
+//		String templateSql = "select * from " + tableName;
+//		tool.getResultToTxt(templateSql, tableName, true);
+		
+		tool.createBackSqlFromTxt(mainFolderPath + "/" + tableName + fileNameSuffix
+				, mainFolderPath + "/" + tableName + backSuffix + fileNameSuffix);
 		
 	}
 
