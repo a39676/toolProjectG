@@ -15,12 +15,15 @@ public class MavenSettingFileRename {
 	private static String mySettingFileName = "settingsUse.xml";
 	private static String jobSettingFileName = "settingsPlatenogroup.xml";
 	private static String normalSettingFileName = "settings.xml";
+	
+	private static String mySettingFilePath = mavenConfFolderPath + mySettingFileName;
+	private static String jobSettingFilePath = mavenConfFolderPath + jobSettingFileName;
+	private static String normalSettingFilePath = mavenConfFolderPath + normalSettingFileName;
+	
 	private static File mavenConfFolder = null;
-	private static File normalSettingFile = null;
 
 	static {
 		mavenConfFolder = new File(mavenConfFolderPath);
-		normalSettingFile = new File(mavenConfFolder + "/" + normalSettingFileName);
 	}
 
 	/**
@@ -35,18 +38,11 @@ public class MavenSettingFileRename {
 			return;
 		}
 
-		if (normalSettingFile.exists()) {
-			if (!normalSettingFile.delete()) {
-				System.err.println("normal file delete error");
-				return;
-			}
-		}
-		
-		setMyFile = true;
+//		setMyFile = true;
 		if(setMyFile) {
-			copyFile(mavenConfFolderPath+"/"+mySettingFileName, mavenConfFolderPath+"/"+normalSettingFileName);
+			copyFile(mySettingFilePath, normalSettingFilePath);
 		} else {
-			copyFile(mavenConfFolderPath+"/"+jobSettingFileName, mavenConfFolderPath+"/"+normalSettingFileName);
+			copyFile(jobSettingFilePath, normalSettingFilePath);
 		}
 
 	}
