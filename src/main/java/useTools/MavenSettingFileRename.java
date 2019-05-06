@@ -40,14 +40,14 @@ public class MavenSettingFileRename {
 
 //		setMyFile = true;
 		if(setMyFile) {
-			copyFile(mySettingFilePath, normalSettingFilePath);
+			replaceFile(mySettingFilePath, normalSettingFilePath);
 		} else {
-			copyFile(jobSettingFilePath, normalSettingFilePath);
+			replaceFile(jobSettingFilePath, normalSettingFilePath);
 		}
 
 	}
 
-	private static void copyFile(String sourceFilePath, String targetFilePath) {
+	private static void replaceFile(String sourceFilePath, String targetFilePath) {
 		try {
 			File sourceFile = new File(sourceFilePath);
 			Path targetPath = Paths.get(targetFilePath);
