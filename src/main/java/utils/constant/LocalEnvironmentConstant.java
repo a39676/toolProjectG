@@ -13,6 +13,8 @@ public class LocalEnvironmentConstant {
 	public static String woqu3 = "src/main/resources/properties/woqu3.properties";
 	public static String woquIntelligentDevice = "src/main/resources/properties/woquIntelligentDevice.properties";
 	public static String woquDevNotification = "src/main/resources/properties/woquDevNotification.properties";
+	public static String woquDevFinance= "src/main/resources/properties/woquDevFinance.properties";
+	public static String woquDevOperation= "src/main/resources/properties/woquDevOperation.properties";
 	
 	
 	// 表结构汇总excel
