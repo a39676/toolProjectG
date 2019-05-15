@@ -288,7 +288,7 @@ public class SqlTool {
 	
 	public static void main(String[] args) throws Exception  {
 		SqlTool tool = new SqlTool();
-		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquIntelligentDevice);
+		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquDevOperation);
 //		IOtools iot = new IOtools();
 		
 //		 搜索数据库
@@ -315,7 +315,7 @@ public class SqlTool {
 //		}
 		
 		String mainFolderPath = "D:/auxiliary/tmp";
-		String tableName = "t_house_energy_history";
+		String tableName = "s_complaint_title_item";
 		String backSuffix = "Backup";
 		String fileNameSuffix = ".txt";
 		String templateSql = "select * from " + tableName;

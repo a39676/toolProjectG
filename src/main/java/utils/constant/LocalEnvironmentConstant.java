@@ -5,16 +5,13 @@ import java.io.File;
 public class LocalEnvironmentConstant {
 	
 //	public static String propertiesFile = "src/main/resources/properties/orangeBankApi.properties";
-	public static String orangePropertiesFile = "src/main/resources/properties/orangeBankApiDev.properties";
-	public static String postgrePropertiesFile = "src/main/resources/properties/postgreTest.properties";
-	public static String propertiesFile = "src/main/resources/properties/testSql.properties";
-	public static String memoryJoyPropertiesFile = "src/main/resources/properties/memoryJoy.properties";
-	public static String ssmPropertiesFile = "src/main/resources/properties/ssm.properties";
-	public static String woqu3 = "src/main/resources/properties/woqu3.properties";
-	public static String woquIntelligentDevice = "src/main/resources/properties/woquIntelligentDevice.properties";
-	public static String woquDevNotification = "src/main/resources/properties/woquDevNotification.properties";
-	public static String woquDevFinance= "src/main/resources/properties/woquDevFinance.properties";
-	public static String woquDevOperation= "src/main/resources/properties/woquDevOperation.properties";
+	public static String memoryJoyPropertiesFile = "src/main/resources/properties/database/memoryJoy.properties";
+	public static String ssmPropertiesFile = "src/main/resources/properties/database/ssm.properties";
+	public static String woqu3 = "src/main/resources/properties/database/woqu3.properties";
+	public static String woquIntelligentDevice = "src/main/resources/properties/database/woquIntelligentDevice.properties";
+	public static String woquDevNotification = "src/main/resources/properties/database/woquDevNotification.properties";
+	public static String woquDevFinance= "src/main/resources/properties/database/woquDevFinance.properties";
+	public static String woquDevOperation= "src/main/resources/properties/database/woquDevOperation.properties";
 	
 	
 	// 表结构汇总excel
