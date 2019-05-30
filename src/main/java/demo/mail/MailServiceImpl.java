@@ -26,6 +26,7 @@ public class MailServiceImpl {
 		MailServiceImpl t = new MailServiceImpl();
 		Properties prop = MailTool.getProperties("tencentMailSsl.properties");
 		MailProperties p = MailTool.buildMailProperties(prop);
+		System.out.println(p);
 		
 		try {
 			t.searchInbox();

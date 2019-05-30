@@ -957,7 +957,7 @@ public class MySqlTools {
 		
 	}
 	
-	private Long rowCount(Connection conn, String outputPath, String tableName) {
+	protected Long rowCount(Connection conn, String outputPath, String tableName) {
 		String rowCountSql = "select count(*) from ";
 		Statement rowCountStatement = null;
 		
