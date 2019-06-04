@@ -1,4 +1,4 @@
-package job_test.memory_joy.domain;
+package job_test.memory_joy.pojo;
 
 public class MonsterRecord {
     private Integer cterId;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="demo.image.mapper.ImageStoreMapper">
 
-  <resultMap id="BaseResultMap" type="demo.image.domain.ImageStore">
+  <resultMap id="BaseResultMap" type="demo.image.pojo.ImageStore">
     <result column="image_id" jdbcType="BIGINT" property="imageId" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="image_name" jdbcType="VARCHAR" property="imageName" />
@@ -12,7 +12,7 @@
     <result column="md5_mark" jdbcType="CHAR" property="md5Mark" />
   </resultMap>
   
-  <insert id="insert" parameterType="demo.image.domain.ImageStore">
+  <insert id="insert" parameterType="demo.image.pojo.ImageStore">
     insert into image_store (image_id, article_id, image_url, 
       image_name, remark, 
       create_time, backup_time, md5_mark
@@ -23,7 +23,7 @@
       )
   </insert>
   
-  <insert id="insertSelective" parameterType="demo.image.domain.ImageStore">
+  <insert id="insertSelective" parameterType="demo.image.pojo.ImageStore">
     insert into image_store
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="imageId != null">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job_test.memory_joy.mapper.MonsterRecordMapper">
-  <resultMap id="BaseResultMap" type="job_test.memory_joy.domain.MonsterRecord">
+  <resultMap id="BaseResultMap" type="job_test.memory_joy.pojo.MonsterRecord">
     <result column="cter_id" jdbcType="INTEGER" property="cterId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="cter_name" jdbcType="CHAR" property="cterName" />
@@ -19,7 +19,7 @@
     <result column="water_def" jdbcType="INTEGER" property="waterDef" />
     <result column="spirit_def" jdbcType="INTEGER" property="spiritDef" />
   </resultMap>
-  <insert id="insert" parameterType="job_test.memory_joy.domain.MonsterRecord">
+  <insert id="insert" parameterType="job_test.memory_joy.pojo.MonsterRecord">
     insert into monster_record (cter_id, user_id, cter_name, 
       monster_level, title, profession, 
       gender, strength, alacrity, 
@@ -33,7 +33,7 @@
       #{airDef,jdbcType=INTEGER}, #{fireDef,jdbcType=INTEGER}, #{waterDef,jdbcType=INTEGER}, 
       #{spiritDef,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="job_test.memory_joy.domain.MonsterRecord">
+  <insert id="insertSelective" parameterType="job_test.memory_joy.pojo.MonsterRecord">
     insert into monster_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cterId != null">

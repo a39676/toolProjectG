@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="demo.image.mapper.ImageCacheMapper">
   
-  <resultMap id="BaseResultMap" type="demo.image.domain.ImageCache">
+  <resultMap id="BaseResultMap" type="demo.image.pojo.ImageCache">
     <result column="image_id" jdbcType="BIGINT" property="imageId" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="image_name" jdbcType="CHAR" property="imageName" />
@@ -13,7 +13,7 @@
     <result column="download_time" jdbcType="TIMESTAMP" property="downloadTime" />
   </resultMap>
 
-  <insert id="insert" parameterType="demo.image.domain.ImageCache">
+  <insert id="insert" parameterType="demo.image.pojo.ImageCache">
     insert into image_cache (image_id, image_url, image_name, 
       article_id, remark, is_download, 
       create_time, download_time
@@ -24,7 +24,7 @@
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="demo.image.domain.ImageCache">
+  <insert id="insertSelective" parameterType="demo.image.pojo.ImageCache">
     insert into image_cache
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="imageId != null">

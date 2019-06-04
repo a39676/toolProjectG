@@ -1,4 +1,4 @@
-package test.domain;
+package test.pojo;
 
 public class TmpTable {
     private Integer id;

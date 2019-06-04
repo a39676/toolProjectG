@@ -1,4 +1,4 @@
-package demo.image.domain;
+package demo.image.pojo;
 
 import java.util.Date;
 

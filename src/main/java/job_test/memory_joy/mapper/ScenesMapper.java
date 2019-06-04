@@ -2,7 +2,7 @@ package job_test.memory_joy.mapper;
 
 import java.util.List;
 
-import job_test.memory_joy.domain.Scenes;
+import job_test.memory_joy.pojo.Scenes;
 
 public interface ScenesMapper {
     int insert(Scenes record);

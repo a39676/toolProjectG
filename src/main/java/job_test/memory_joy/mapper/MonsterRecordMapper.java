@@ -1,6 +1,6 @@
 package job_test.memory_joy.mapper;
 
-import job_test.memory_joy.domain.MonsterRecord;
+import job_test.memory_joy.pojo.MonsterRecord;
 
 public interface MonsterRecordMapper {
     int insert(MonsterRecord record);

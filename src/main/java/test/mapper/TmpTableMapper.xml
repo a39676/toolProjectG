@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.mapper.TmpTableMapper">
-  <resultMap id="BaseResultMap" type="test.domain.TmpTable">
+  <resultMap id="BaseResultMap" type="test.pojo.TmpTable">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="colvarchar" jdbcType="VARCHAR" property="colvarchar" />
     <result column="colbool" jdbcType="BIT" property="colbool" />
     <result column="intCol" jdbcType="INTEGER" property="intcol" />
   </resultMap>
-  <insert id="insert" parameterType="test.domain.TmpTable">
+  <insert id="insert" parameterType="test.pojo.TmpTable">
     insert into tmp_table (id, colvarchar, colbool, 
       intCol)
     values (#{id,jdbcType=INTEGER}, #{colvarchar,jdbcType=VARCHAR}, #{colbool,jdbcType=BIT}, 
       #{intcol,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="test.domain.TmpTable">
+  <insert id="insertSelective" parameterType="test.pojo.TmpTable">
     insert into tmp_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
