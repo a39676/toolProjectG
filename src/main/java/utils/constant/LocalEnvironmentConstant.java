@@ -7,11 +7,7 @@ public class LocalEnvironmentConstant {
 //	public static String propertiesFile = "src/main/resources/properties/orangeBankApi.properties";
 	public static String memoryJoyPropertiesFile = "src/main/resources/properties/database/memoryJoy.properties";
 	public static String ssmPropertiesFile = "src/main/resources/properties/database/ssm.properties";
-	public static String woqu3 = "src/main/resources/properties/database/woqu3.properties";
-	public static String woquIntelligentDevice = "src/main/resources/properties/database/woquIntelligentDevice.properties";
-	public static String woquDevNotification = "src/main/resources/properties/database/woquDevNotification.properties";
-	public static String woquDevFinance= "src/main/resources/properties/database/woquDevFinance.properties";
-	public static String woquDevOperation= "src/main/resources/properties/database/woquDevOperation.properties";
+	public static String ws= "src/main/resources/properties/database/ws.properties";
 	
 	
 	// 表结构汇总excel
