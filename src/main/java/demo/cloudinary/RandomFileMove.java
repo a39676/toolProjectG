@@ -1,4 +1,4 @@
-package test.cloudinary;
+package demo.cloudinary;
 
 import java.io.File;
 import java.io.IOException;

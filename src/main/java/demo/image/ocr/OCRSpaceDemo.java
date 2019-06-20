@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.cloudinary.utils.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import httpHandel.HttpUtil;
 import ioHandle.FileUtilCustom;

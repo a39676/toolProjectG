@@ -1,4 +1,4 @@
-package test.cloudinary;
+package demo.cloudinary;
 
 public enum ChannelType {
 	
