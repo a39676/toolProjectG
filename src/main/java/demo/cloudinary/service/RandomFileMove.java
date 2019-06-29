@@ -1,4 +1,4 @@
-package demo.cloudinary;
+package demo.cloudinary.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
+import demo.cloudinary.pojo.type.ChannelType;
 
 public class RandomFileMove {
 	
