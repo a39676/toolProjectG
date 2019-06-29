@@ -13,7 +13,7 @@ import ioHandle.FileUtilCustom;
 
 public class CloudinaryCore {
 	
-	private ChannelType ct = ChannelType.c1;
+	private ChannelType ct = ChannelType.zoo;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private String dateStr = sdf.format(new Date());
 	private String mainFolder = "d:/auxiliary/imageCache";
@@ -23,7 +23,7 @@ public class CloudinaryCore {
 	private String uploadResultTxtPath = mainFolder + "/" + dateStr + "uploaded.txt"; 
 	private int imageTag = ct.getCode();
 
-	public void outputSqlTxt(CloudinaryUploadResult r) {
+	private void outputSqlTxt(CloudinaryUploadResult r) {
 		/* 
 		 * insert into image_cloudinary_local_record(image_url, image_name, cloud_public_id, image_tag) values
 		 *  */
@@ -33,14 +33,14 @@ public class CloudinaryCore {
 		System.out.print(line);
 	}
 	
-	public void outputUploadResultTxt(CloudinaryUploadResult r) {
+	private void outputUploadResultTxt(String fileName) {
 		FileUtilCustom io = new FileUtilCustom();
-		String line = r.getOriginalFilename() + "\n";
+		String line = fileName + "\n";
 		io.byteToFileAppendAtEnd(line.getBytes(), uploadResultTxtPath);
 		System.out.print(line);
 	}
 	
-	public Set<String> getAlreadyUpload() {
+	private Set<String> getAlreadyUpload() {
 		FileUtilCustom io = new FileUtilCustom();
 		String content = io.getStringFromFile(uploadResultTxtPath);
 		String[] lines = content.split("\n");
@@ -54,7 +54,7 @@ public class CloudinaryCore {
 	public static void main(String[] args) throws IOException {
 		CloudinaryCore core = new CloudinaryCore();
 		RandomFileMove mover = new RandomFileMove();
-		mover.randomFileMove(core.sourceFolderPath, core.targetFloderPath, 0);
+		mover.randomFileMove(core.sourceFolderPath, core.targetFloderPath, 4);
 		
 		File targetFoler = new File(core.targetFloderPath);
 		File[] files = targetFoler.listFiles();
@@ -65,9 +65,8 @@ public class CloudinaryCore {
 		for(File f : files) {
 			if(!fileNames.contains(f.getName())) {
 				result = uploader.uploadCore(f);
-				System.out.println(result.toString());
 				core.outputSqlTxt(result);
-				core.outputUploadResultTxt(result);
+				core.outputUploadResultTxt(f.getName());
 			}
 		}
 	}

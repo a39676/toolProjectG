@@ -23,15 +23,6 @@ public class CloudinaryAPIUploader {
 		return result;
 	}
 	
-	public CloudinaryUploadResult uploadCoreTest(File f) throws IOException {
-
-		CloudinaryUploadResult result = new CloudinaryUploadResult();
-		result.setOriginalFilename("orignalFilename.jpg");
-		result.setPublicId("publicId");
-		result.setSecureUrl("https://something.com/secure/url/image.jpg");
-		return result;
-	}
-
 	private CloudinaryUploadResult buildResult(JSONObject j) {
 		CloudinaryUploadResult r = new CloudinaryUploadResult();
 		r.setSecureUrl(j.getString("secure_url"));
