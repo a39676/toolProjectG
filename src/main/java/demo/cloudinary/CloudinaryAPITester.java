@@ -16,11 +16,11 @@ import net.sf.json.JSONObject;
 public class CloudinaryAPITester {
 	
 	public static void main(String[] args) throws IOException {
-		ChannelType ct = ChannelType.c9;
+		ChannelType ct = ChannelType.zoo;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String dateStr = sdf.format(new Date());
-		String targetFloderPath = "g:/imageCache/" + dateStr + "/" + ct.getChannelTypeName();
-		int imageTag = ct.getChannelTypeCode();
+		String targetFloderPath = "f:/imageCache/" + dateStr + "/" + ct.getName();
+		int imageTag = ct.getCode();
 
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 				  "cloud_name", "dy20bdekn",
@@ -42,6 +42,11 @@ public class CloudinaryAPITester {
 			+ "('" + tmpResult.getString("secure_url") + "','" + tmpResult.getString("original_filename") + "','" + tmpResult.getString("public_id") + "'," + imageTag + "),");
 		}
 		
+		/*
+		 * FIXME  
+		 * 应该改成 每上传一张图片就写入一条记录到文档, 并记录已上传文件
+		 * 避免网络波动带来的麻烦
+		 */
 		StringBuffer sb = new StringBuffer();
 		sb.append("insert into image_cloudinary_local_record(image_url, image_name, cloud_public_id, image_tag) values");
 		
@@ -53,7 +58,7 @@ public class CloudinaryAPITester {
 			sb.append(j.getString("secure_url") + "\n");
 		}
 		FileUtilCustom io = new FileUtilCustom();
-		io.byteToFile(sb.toString().getBytes(), targetFloderPath + "/" + ct.getChannelTypeName() + ".txt");
+		io.byteToFile(sb.toString().getBytes(), targetFloderPath + "/" + ct.getName() + ".txt");
 		System.out.println(sb.toString());
 	}
 

@@ -5,29 +5,29 @@ public enum ChannelType {
 	c1("1", 1),
 	c9("9", 9),
 	c10("10", 10),
-	pet("pet", 16),
+	zoo("zoo", 16),
 	;
 	
-	private String channelTypeName;
-	private Integer channelTypeCode;
+	private String name;
+	private Integer code;
 	
-	ChannelType(String channelTypeName, Integer channelTypeCode) {
-		this.channelTypeName = channelTypeName;
-		this.channelTypeCode = channelTypeCode;
+	ChannelType(String name, Integer code) {
+		this.name = name;
+		this.code = code;
 	}
 	
 
-	public String getChannelTypeName() {
-		return channelTypeName;
+	public String getName() {
+		return name;
 	}
 
-	public Integer getChannelTypeCode() {
-		return channelTypeCode;
+	public Integer getCode() {
+		return code;
 	}
 
 	public static ChannelType getType(String typeName) {
 		for(ChannelType t : ChannelType.values()) {
-			if(t.getChannelTypeName().equals(typeName)) {
+			if(t.getName().equals(typeName)) {
 				return t;
 			}
 		}
@@ -36,7 +36,7 @@ public enum ChannelType {
 	
 	public static ChannelType getType(Integer typeCode) {
 		for(ChannelType t : ChannelType.values()) {
-			if(t.getChannelTypeCode().equals(typeCode)) {
+			if(t.getCode().equals(typeCode)) {
 				return t;
 			}
 		}

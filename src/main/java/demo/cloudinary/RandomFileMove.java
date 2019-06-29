@@ -16,11 +16,11 @@ public class RandomFileMove {
 	
 
 	public static void main(String[] args) throws IOException {
-		ChannelType ct = ChannelType.pet;
+		ChannelType ct = ChannelType.c10;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String dateStr = sdf.format(new Date());
-		String sourceFolderPath = "g:/imageCache/notPostYet/" + ct.getChannelTypeCode() + "/";
-		String targetFloderPath = "g:/imageCache/" + dateStr + "/" + ct.getChannelTypeName() + "/";
+		String sourceFolderPath = "f:/imageCache/notPostYet/" + ct.getName() + "/";
+		String targetFloderPath = "f:/imageCache/" + dateStr + "/" + ct.getName() + "/";
 		
 		File sourceFolder = new File(sourceFolderPath);
 		File targetFolder = new File(targetFloderPath);
@@ -31,9 +31,10 @@ public class RandomFileMove {
 		
 		
 		int tmpIndex = 0;
+		int movingCount = 12;  // 需要移动多少图片
 		List<String> fileNameRecord = new ArrayList<String>();
 		File tmpFile = null;
-		for(int i = 0; i < 120 && files.size() > 0; i++) {
+		for(int i = 0; i <= movingCount && files.size() > 0; i++) {
 			files = Arrays.asList(sourceFolder.listFiles());
 			if(files.size() > 1) {
 				tmpIndex = ThreadLocalRandom.current().nextInt(0, files.size() - 1);

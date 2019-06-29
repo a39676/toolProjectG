@@ -288,7 +288,7 @@ public class SqlTool {
 	
 	public static void main(String[] args) throws Exception  {
 		SqlTool tool = new SqlTool();
-		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.woquDevOperation);
+		SqlTool.setPropertiesFilePath(LocalEnvironmentConstant.ws);
 //		IOtools iot = new IOtools();
 		
 //		 搜索数据库
