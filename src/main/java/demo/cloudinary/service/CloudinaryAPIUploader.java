@@ -11,16 +11,33 @@ import net.sf.json.JSONObject;
 
 public class CloudinaryAPIUploader {
 	
-	public CloudinaryUploadResult uploadCore(File f) throws IOException {
+	private long maxSize = 10485760L;
+	
+	public CloudinaryUploadResult uploadCore(File f) {
+		
+		CloudinaryUploadResult result = null;
 
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 				  "cloud_name", "dy20bdekn",
 				  "api_key", "915927123645857",
 				  "api_secret", "k8483Du7gcUp49UrKKnm9RgXsiYf"));
 		
-		JSONObject resultJson = JSONObject.fromObject(cloudinary.uploader().upload(f, ObjectUtils.emptyMap()));
-		CloudinaryUploadResult result = buildResult(resultJson);
+		if(f.length() > maxSize) {
+			System.out.println(f.length());
+			result = new CloudinaryUploadResult();
+			return result;
+		}
+		
+		JSONObject resultJson = null;
+		try {
+			resultJson = JSONObject.fromObject(cloudinary.uploader().upload(f, ObjectUtils.emptyMap()));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return result;
+		}
+		result = buildResult(resultJson);
 		return result;
+//		return null;
 	}
 	
 	private CloudinaryUploadResult buildResult(JSONObject j) {
@@ -28,6 +45,7 @@ public class CloudinaryAPIUploader {
 		r.setSecureUrl(j.getString("secure_url"));
 		r.setOriginalFilename(j.getString("original_filename"));
 		r.setPublicId(j.getString("public_id"));
+		r.setSuccess(true);
 		return r;
 	}
 }

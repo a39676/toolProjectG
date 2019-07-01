@@ -13,15 +13,16 @@ import ioHandle.FileUtilCustom;
 
 public class CloudinaryCore {
 	
-	private ChannelType ct = ChannelType.zoo;
+	private ChannelType ct = ChannelType.c1;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private String dateStr = sdf.format(new Date());
-	private String mainFolder = "d:/auxiliary/imageCache";
+	private String mainFolder = "g:/imageCache";
 	private String sourceFolderPath = mainFolder + "/notPostYet/" + ct.getName();
 	private String targetFloderPath = mainFolder + "/" + dateStr + "/" + ct.getName() + "/";
 	private String sqlOutputTxtPath = mainFolder + "/" + dateStr + "sql.txt";
 	private String uploadResultTxtPath = mainFolder + "/" + dateStr + "uploaded.txt"; 
 	private int imageTag = ct.getCode();
+	private static int postCount = 0;
 
 	private void outputSqlTxt(CloudinaryUploadResult r) {
 		/* 
@@ -41,6 +42,11 @@ public class CloudinaryCore {
 	}
 	
 	private Set<String> getAlreadyUpload() {
+		File uploadResultFile = new File(uploadResultTxtPath);
+		if(!uploadResultFile.exists() || !uploadResultFile.isFile()) {
+			return new HashSet<String>();
+		}
+		
 		FileUtilCustom io = new FileUtilCustom();
 		String content = io.getStringFromFile(uploadResultTxtPath);
 		String[] lines = content.split("\n");
@@ -54,7 +60,7 @@ public class CloudinaryCore {
 	public static void main(String[] args) throws IOException {
 		CloudinaryCore core = new CloudinaryCore();
 		RandomFileMove mover = new RandomFileMove();
-		mover.randomFileMove(core.sourceFolderPath, core.targetFloderPath, 4);
+		mover.randomFileMove(core.sourceFolderPath, core.targetFloderPath, postCount);
 		
 		File targetFoler = new File(core.targetFloderPath);
 		File[] files = targetFoler.listFiles();
@@ -65,8 +71,12 @@ public class CloudinaryCore {
 		for(File f : files) {
 			if(!fileNames.contains(f.getName())) {
 				result = uploader.uploadCore(f);
-				core.outputSqlTxt(result);
 				core.outputUploadResultTxt(f.getName());
+				if(result.isSuccess()) {
+					core.outputSqlTxt(result);
+				}
+			} else {
+				System.out.println(f.getName() + " was uploaded before, ignore;");
 			}
 		}
 	}
