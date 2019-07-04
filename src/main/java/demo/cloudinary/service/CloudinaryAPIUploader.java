@@ -23,7 +23,7 @@ public class CloudinaryAPIUploader {
 				  "api_secret", "k8483Du7gcUp49UrKKnm9RgXsiYf"));
 		
 		if(f.length() > maxSize) {
-			System.out.println(f.length());
+			System.out.println(f.getName() + " is too large, size: " + f.length());
 			result = new CloudinaryUploadResult();
 			return result;
 		}

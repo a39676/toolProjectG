@@ -13,7 +13,7 @@ import ioHandle.FileUtilCustom;
 
 public class CloudinaryCore {
 	
-	private ChannelType ct = ChannelType.c1;
+	private ChannelType ct = ChannelType.zoo;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private String dateStr = sdf.format(new Date());
 	private String mainFolder = "g:/imageCache";
@@ -22,7 +22,7 @@ public class CloudinaryCore {
 	private String sqlOutputTxtPath = mainFolder + "/" + dateStr + "sql.txt";
 	private String uploadResultTxtPath = mainFolder + "/" + dateStr + "uploaded.txt"; 
 	private int imageTag = ct.getCode();
-	private static int postCount = 0;
+	private static int postCount = 3;
 
 	private void outputSqlTxt(CloudinaryUploadResult r) {
 		/* 

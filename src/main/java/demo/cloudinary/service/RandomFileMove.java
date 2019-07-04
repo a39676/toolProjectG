@@ -19,6 +19,10 @@ public class RandomFileMove {
 		File targetFolder = new File(targetFloderPath);
 		if(!targetFolder.exists()) {
 			targetFolder.mkdirs();
+		} else {
+			if(targetFolder.listFiles().length > 0) {
+				return;
+			}
 		}
 		List<File> files = Arrays.asList(sourceFolder.listFiles());
 		
