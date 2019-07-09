@@ -14,7 +14,7 @@ import org.apache.commons.io.FilenameUtils;
 
 public class RandomFileMove {
 	
-	private static final List<String> targetFileSuffix = Arrays.asList("jpg", "jpeg", "gif");
+	private static final List<String> targetFileSuffix = Arrays.asList("jpg", "jpeg", "gif", "webm", "mpeg");
 	
 	public void randomFileMove(String sourceFolderPath, String targetFloderPath, int movingCount) throws IOException {
 		
