@@ -10,9 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.commons.io.FilenameUtils;
+
 public class RandomFileMove {
 	
-
+	private static final List<String> targetFileSuffix = Arrays.asList("jpg", "jpeg", "gif");
+	
 	public void randomFileMove(String sourceFolderPath, String targetFloderPath, int movingCount) throws IOException {
 		
 		File sourceFolder = new File(sourceFolderPath);
@@ -29,6 +32,7 @@ public class RandomFileMove {
 		int tmpIndex = 0;
 		List<String> fileNameRecord = new ArrayList<String>();
 		File tmpFile = null;
+		String extension = null;
 		for(int i = 0; i < movingCount && files.size() > 0; i++) {
 			files = Arrays.asList(sourceFolder.listFiles());
 			if(files.size() > 1) {
@@ -37,7 +41,9 @@ public class RandomFileMove {
 				tmpIndex = 0;
 			}
 			tmpFile = files.get(tmpIndex);
-			if(fileNameRecord.contains(tmpFile.getName())) {
+			extension = FilenameUtils.getExtension(tmpFile.getName());
+			
+			if(fileNameRecord.contains(tmpFile.getName()) || !targetFileSuffix.contains(extension)) {
 				i--;
 				continue;
 			} else {
