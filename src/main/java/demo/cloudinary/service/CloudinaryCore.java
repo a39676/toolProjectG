@@ -13,16 +13,16 @@ import ioHandle.FileUtilCustom;
 
 public class CloudinaryCore {
 	
-	private ChannelType ct = ChannelType.zoo;
+	private ChannelType ct = ChannelType.c9;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	private String dateStr = sdf.format(new Date());
-	private String mainFolder = "g:/imageCache";
+	private String mainFolder = "d:/auxiliary/imageCache";
 	private String sourceFolderPath = mainFolder + "/notPostYet/" + ct.getName();
 	private String targetFloderPath = mainFolder + "/" + dateStr + "/" + ct.getName() + "/";
 	private String sqlOutputTxtPath = mainFolder + "/" + dateStr + "sql.txt";
 	private String uploadResultTxtPath = mainFolder + "/" + dateStr + "uploaded.txt"; 
 	private int imageTag = ct.getCode();
-	private static int postCount = 3;
+	private static int postCount = 0;
 
 	private void outputSqlTxt(CloudinaryUploadResult r) {
 		/* 
@@ -68,15 +68,16 @@ public class CloudinaryCore {
 		
 		CloudinaryAPIUploader uploader = new CloudinaryAPIUploader();
 		CloudinaryUploadResult result = null;
-		for(File f : files) {
-			if(!fileNames.contains(f.getName())) {
-				result = uploader.uploadCore(f);
-				core.outputUploadResultTxt(f.getName());
+		for(int i = 0; i < files.length; i++) {
+			System.out.print("(" + i + "/" + files.length + ")" + files[i].getName() + ";");
+			if(!fileNames.contains(files[i].getName())) {
+				result = uploader.uploadCore(files[i]);
+				core.outputUploadResultTxt(files[i].getName());
 				if(result.isSuccess()) {
 					core.outputSqlTxt(result);
 				}
 			} else {
-				System.out.println(f.getName() + " was uploaded before, ignore;");
+				System.out.println(files[i].getName() + " was uploaded before, ignore;");
 			}
 		}
 	}

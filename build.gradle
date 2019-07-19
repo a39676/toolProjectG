@@ -28,7 +28,7 @@ dependencies {
     
     // local jar
     // custom tool pack
-    compile files('src/libs/toolPacksG-0.0.4.3.jar')
+    compile files('src/libs/toolPacksG-1.0.1.jar')
 	// cloudinary    
     compile files('src/libs/cloudinary-http44-1.19.0.jar')
     compile files('src/libs/cloudinary-1.0.14.jar')
