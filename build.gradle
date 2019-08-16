@@ -148,8 +148,12 @@ dependencies {
 	compile group: 'com.baidu.aip', name: 'java-sdk', version: '4.11.0'
 	
 	// web collector
-	compile group: 'cn.edu.hfut.dmic.webcollector', name: 'WebCollector', version: '2.71'
+	// compile group: 'cn.edu.hfut.dmic.webcollector', name: 'WebCollector', version: '2.71'
+	
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
+	compile group: 'io.appium', name: 'java-client', version: '7.1.0'
+	
 }
 
 
