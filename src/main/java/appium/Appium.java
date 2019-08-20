@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -21,13 +20,14 @@ public class Appium {
         capabilities.setCapability("appPackage", "com.komorebi.memo");
         capabilities.setCapability("appActivity", "com.komorebi.memo.MainActivity");
 
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        @SuppressWarnings("rawtypes")
+		AndroidDriver androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
-        Map<String, String> map = driver.getAppStringMap();
+        Map<String, String> map = androidDriver.getAppStringMap();
         
         System.out.println(map);
 
-        driver.quit();
+        androidDriver.quit();
     }
 
 }
