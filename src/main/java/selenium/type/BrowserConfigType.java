@@ -1,9 +1,12 @@
-package selenium;
+package selenium.type;
 
-public enum BrowserType {
+public enum BrowserConfigType {
 	
 	/** chrome */
-	chrome("chrome", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", "webdriver.chrome.driver"),
+//	chrome("chrome", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", "webdriver.chrome.driver"),
+//	chrome("chrome", "C:/Program Files (x86)/Google/Chrome/Application/chromeDriver.exe", "webdriver.chrome.driver"),
+	chrome("chrome", "D:/soft/chromeDriver76.exe", "webdriver.chrome.driver"),
+//	chromedriver
 	/** fireFox */
 	fireFox("fireFox", "C:/Program Files/Mozilla Firefox/firefox.exe", "webdriver.firefox.marionette"),
 	/** gecko */
@@ -16,7 +19,7 @@ public enum BrowserType {
 	private String path;
 	private String driver;
 	
-	BrowserType(String name, String path, String driver) {
+	BrowserConfigType(String name, String path, String driver) {
 		this.name = name;
 		this.path = path;
 		this.driver = driver;
@@ -34,8 +37,8 @@ public enum BrowserType {
 		return driver;
 	}
 
-	public static BrowserType getType(String typeName) {
-		for(BrowserType t : BrowserType.values()) {
+	public static BrowserConfigType getType(String typeName) {
+		for(BrowserConfigType t : BrowserConfigType.values()) {
 			if(t.getName().equals(typeName)) {
 				return t;
 			}

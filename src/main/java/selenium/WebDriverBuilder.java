@@ -8,10 +8,12 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import selenium.type.BrowserConfigType;
+
 public class WebDriverBuilder {
 
 	public WebDriver buildFireFoxWebDriver(FirefoxOptions options) {
-		BrowserType browserType = BrowserType.gecko;
+		BrowserConfigType browserType = BrowserConfigType.gecko;
 		System.setProperty(browserType.getDriver(), browserType.getPath());
 		if(options == null) {
 			options = new FirefoxOptions();
@@ -26,7 +28,7 @@ public class WebDriverBuilder {
 	}
 	
 	public WebDriver buildEdgeWebDriver(EdgeOptions options) {
-		BrowserType browserType = BrowserType.edge;
+		BrowserConfigType browserType = BrowserConfigType.edge;
 		System.setProperty(browserType.getDriver(), browserType.getPath());
 		if(options == null) {
 			options = new EdgeOptions();
@@ -40,13 +42,18 @@ public class WebDriverBuilder {
 	}
 	
 	public WebDriver buildChromeWebDriver(ChromeOptions options) {
-		BrowserType browserType = BrowserType.chrome;
+		BrowserConfigType browserType = BrowserConfigType.chrome;
 		System.setProperty(browserType.getDriver(), browserType.getPath());
-		if(options == null) {
-			options = new ChromeOptions();
-//			options.addArguments(SeleniumConstant.headLess);
-		}
-		WebDriver driver = new ChromeDriver(options);
+		WebDriver driver = null;
+//		if(options == null) {
+//			options = new ChromeOptions();
+////			options.addArguments(SeleniumConstant.headLess);
+//			driver = new ChromeDriver(options);
+//		} else {
+//			driver = new ChromeDriver();
+//		}
+		
+		driver = new ChromeDriver();
 		return driver;
 	}
 	

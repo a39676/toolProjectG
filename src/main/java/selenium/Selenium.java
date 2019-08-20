@@ -20,6 +20,8 @@ public class Selenium {
 	public static void testSelenium(WebDriver driver) throws InterruptedException, IOException, AWTException {
 		
 		driver.get("http://www.baidu.com");
+		Thread.sleep(1300L);
+		
 		WebElement searchBox = driver.findElement(By.id("kw"));
 		searchBox.sendKeys("test");
 		searchBox.submit();
@@ -46,17 +48,23 @@ public class Selenium {
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File("d:/auxiliary/tmp/screenshot.png"));
 		
-		Thread.sleep(3000L);
-		driver.quit();
+		
 	}
 	
 	
 	public static void main(String[] args) throws InterruptedException, IOException, AWTException {
 		WebDriverBuilder deiverBuilder = new WebDriverBuilder();
-		WebDriver driver = deiverBuilder.buildFireFoxWebDriver();
-		testSelenium(driver);
-		
-//		WebDriver driver2 = deiverBuilder.buildEdgeWebDriver();
-//		testSelenium(driver2);
+		WebDriver driver = null;
+		try {
+			driver = deiverBuilder.buildChromeWebDriver();
+			testSelenium(driver);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(driver != null) {
+				driver.quit();
+			}
+		}
+		System.exit(0);
 	}
 }

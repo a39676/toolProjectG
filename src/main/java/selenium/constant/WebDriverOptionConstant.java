@@ -1,4 +1,4 @@
-package selenium;
+package selenium.constant;
 
 public class WebDriverOptionConstant {
 
