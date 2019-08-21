@@ -6,7 +6,6 @@ public enum BrowserConfigType {
 //	chrome("chrome", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", "webdriver.chrome.driver"),
 //	chrome("chrome", "C:/Program Files (x86)/Google/Chrome/Application/chromeDriver.exe", "webdriver.chrome.driver"),
 	chrome("chrome", "D:/soft/chromeDriver76.exe", "webdriver.chrome.driver"),
-//	chromedriver
 	/** fireFox */
 	fireFox("fireFox", "C:/Program Files/Mozilla Firefox/firefox.exe", "webdriver.firefox.marionette"),
 	/** gecko */

@@ -56,7 +56,7 @@ public class Selenium {
 		WebDriverBuilder deiverBuilder = new WebDriverBuilder();
 		WebDriver driver = null;
 		try {
-			driver = deiverBuilder.buildChromeWebDriver();
+			driver = deiverBuilder.buildEdgeWebDriver();
 			testSelenium(driver);
 		} catch (Exception e) {
 			e.printStackTrace();

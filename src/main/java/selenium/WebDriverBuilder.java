@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import selenium.constant.WebDriverOptionConstant;
 import selenium.type.BrowserConfigType;
 
 public class WebDriverBuilder {
@@ -17,7 +18,7 @@ public class WebDriverBuilder {
 		System.setProperty(browserType.getDriver(), browserType.getPath());
 		if(options == null) {
 			options = new FirefoxOptions();
-//			options.addArguments(SeleniumConstant.headLess);
+			options.addArguments(WebDriverOptionConstant.headLess);
 		}
 		WebDriver driver = new FirefoxDriver(options);
 		return driver;
@@ -45,15 +46,12 @@ public class WebDriverBuilder {
 		BrowserConfigType browserType = BrowserConfigType.chrome;
 		System.setProperty(browserType.getDriver(), browserType.getPath());
 		WebDriver driver = null;
-//		if(options == null) {
-//			options = new ChromeOptions();
-////			options.addArguments(SeleniumConstant.headLess);
-//			driver = new ChromeDriver(options);
-//		} else {
-//			driver = new ChromeDriver();
-//		}
+		if(options == null) {
+			options = new ChromeOptions();
+//			options.addArguments(WebDriverOptionConstant.headLess);
+		}
 		
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 		return driver;
 	}
 	
