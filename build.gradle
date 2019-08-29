@@ -17,6 +17,9 @@ repositories {
 }
 
 dependencies {
+	// tools
+	compile project(':toolPacksG')
+	
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
 
@@ -27,8 +30,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     // local jar
-    // custom tool pack
-    compile files('src/libs/toolPacksG-1.0.1.jar')
 	// cloudinary    
     compile files('src/libs/cloudinary-http44-1.19.0.jar')
     compile files('src/libs/cloudinary-1.0.14.jar')
