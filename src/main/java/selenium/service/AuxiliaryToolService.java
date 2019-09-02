@@ -13,7 +13,7 @@ public class AuxiliaryToolService {
 		/*
 		 * TODO testing
 		 */
-		String src = webElement.getAttribute("src");
+//		String src = webElement.getAttribute("src");
 //		\.\w{3,4}($|\?)
 		
 //		String suffix = 
